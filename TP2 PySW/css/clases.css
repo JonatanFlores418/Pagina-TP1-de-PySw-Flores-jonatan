@@ -1,344 +1,355 @@
-/* En styles.css o clases.css */
-
-/* --- Filtros --- */
-#filtros {
-  background-color: var(--color-card-fondo, #f9f9f9); /* Usa variable con fallback */
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-borde-suave, #eee);
-  transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida);
-}
-
-#filtros h2 {
-  color: var(--color-titulos);
-  margin-bottom: 1rem;
-  text-align: center;
-  transition: color var(--transicion-rapida);
-}
-
-.filter-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
-
-.filter-container label {
-  color: var(--color-texto);
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-borde-suave, #ccc);
-  border-radius: 20px;
-  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
-  white-space: nowrap; /* Evitar que las etiquetas se rompan */
-}
-
-.filter-container input[type="checkbox"] {
-  display: none; /* Ocultar checkbox original */
-}
-
-.filter-container input[type="checkbox"]:checked + label {
-  background-color: var(--color-primario);
-  color: var(--color-boton-texto);
-  border-color: var(--color-primario);
-}
-.filter-container label:hover {
-  background-color: var(--color-primario-hover);
-  color: var(--color-boton-texto);
-  border-color: var(--color-primario-hover);
-}
-
-
-/* --- Galería --- */
+/* --- Galería (Estilos Masonry) --- */
 #galeria-clases {
-    padding: 0 1rem; /* Añadir padding lateral a la sección */
+  padding: 0 1rem; /* Mantener padding lateral */
 }
 #galeria-clases h2 {
-  color: var(--color-titulos);
-  text-align: center;
-  margin-bottom: 1.5rem;
-  transition: color var(--transicion-rapida);
+color: var(--color-titulos);
+text-align: center;
+margin-bottom: 1.5rem;
+transition: color var(--transicion-rapida);
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+/* display: grid; -> Reemplazado por columns */
+/* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); -> Reemplazado */
+/* gap: 1.5rem; -> Reemplazado por column-gap y margin en items */
+
+/* Propiedades para Masonry con CSS Columns */
+column-count: 4; /* Número de columnas deseado en pantallas grandes */
+column-gap: 1rem; /* Espacio entre columnas */
+width: 100%; /* Asegurar que ocupe el ancho disponible */
 }
 
-.grid-item {
-  position: relative;
-  overflow: hidden;
+/* Estilos para cada item (enlace) en la galería */
+.grid-item-link {
+  display: inline-block; /* Necesario para que columns funcione bien */
+  width: 100%; /* Ocupar el ancho de la columna */
+  margin-bottom: 1rem; /* Espacio vertical entre items */
+  break-inside: avoid-column; /* Evitar que un item se rompa entre columnas */
+  position: relative; /* Para el overlay */
+  overflow: hidden; /* Para el borde redondeado y hover de imagen */
   border-radius: 8px;
   box-shadow: var(--sombra-suave);
   transition: transform var(--transicion-corta), box-shadow var(--transicion-corta);
   background-color: var(--color-card-fondo); /* Fondo por si la imagen no carga */
 }
 
-.grid-item:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--sombra-hover);
+.grid-item-link:hover {
+transform: translateY(-5px);
+box-shadow: var(--sombra-hover);
+}
+
+/* El div .grid-item ahora es opcional, puedes aplicar estilos directamente al enlace si prefieres */
+.grid-item {
+  /* Puedes quitar estilos de aquí si los aplicas a .grid-item-link */
+  /* position: relative; */
+  /* overflow: hidden; */
+  /* border-radius: 8px; */
 }
 
 .grid-item img {
-  display: block;
-  width: 100%;
-  height: 400px; /* Altura reducida por defecto */
-  object-fit: cover;
-  transition: transform var(--transicion-rapida);
+display: block;
+width: 100%;
+height: auto; /* Altura automática para Masonry */
+object-fit: cover; /* Mantenemos cover por si acaso */
+transition: transform var(--transicion-rapida);
+border-radius: 8px; /* Aplicar redondeo a la imagen también */
 }
 
-.grid-item:hover img {
-  transform: scale(1.05);
+.grid-item-link:hover img { /* Aplicar hover al enlace */
+transform: scale(1.05);
 }
 
 .overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  opacity: 1;
-  transition: opacity var(--transicion-rapida);
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+color: white;
+padding: 1rem;
+text-align: center;
+opacity: 1;
+transition: opacity var(--transicion-rapida);
+border-radius: 0 0 8px 8px; /* Redondear solo abajo */
 }
 
-/* Opcional: Ocultar overlay hasta hover */
-/* .grid-item .overlay { opacity: 0; } */
-/* .grid-item:hover .overlay { opacity: 1; } */
-
 .overlay h3 {
-  margin: 0 0 0.5rem 0;
-  color: white; /* Forzar blanco sobre overlay oscuro */
-  font-size: 1.2rem;
+margin: 0 0 0.5rem 0;
+color: white;
+font-size: 1.2rem;
 }
 
 .overlay p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #eee; /* Gris claro sobre overlay */
+margin: 0;
+font-size: 0.9rem;
+color: #eee;
+}
+
+/* --- Responsive para Masonry --- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .grid-container {
+      column-count: 3; /* Reducir a 3 columnas */
+      column-gap: 0.8rem;
+  }
+  .grid-item-link {
+      margin-bottom: 0.8rem;
+  }
+}
+
+/* Móviles y Tablets pequeñas */
+@media (max-width: 768px) {
+  #galeria-clases {
+      padding: 0 0.5rem; /* Menos padding lateral */
+  }
+  .grid-container {
+      column-count: 2; /* Reducir a 2 columnas */
+  }
+  .overlay h3 {
+      font-size: 1.1rem;
+  }
+  .overlay p {
+      font-size: 0.85rem;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .grid-container {
+      column-count: 1; /* Una sola columna */
+      column-gap: 0; /* Sin gap si es una columna */
+  }
+   .grid-item-link {
+      margin-bottom: 1rem; /* Espacio entre items en una columna */
+  }
+}
+
+/* --- (Resto de estilos de clases.css: #filtros, #horarios, .class-info, etc. se mantienen igual) --- */
+
+/* --- Filtros --- */
+#filtros {
+background-color: var(--color-card-fondo, #f9f9f9);
+padding: 1.5rem;
+margin-bottom: 2rem;
+border-radius: 8px;
+border: 1px solid var(--color-borde-suave, #eee);
+transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+#filtros h2 {
+color: var(--color-titulos);
+margin-bottom: 1rem;
+text-align: center;
+transition: color var(--transicion-rapida);
+}
+
+.filter-container {
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+justify-content: center;
+}
+
+.filter-container label {
+color: var(--color-texto);
+cursor: pointer;
+padding: 0.5rem 1rem;
+border: 1px solid var(--color-borde-suave, #ccc);
+border-radius: 20px;
+transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+white-space: nowrap;
+}
+
+.filter-container input[type="checkbox"] {
+display: none;
+}
+
+.filter-container input[type="checkbox"]:checked + label {
+background-color: var(--color-primario);
+color: var(--color-boton-texto);
+border-color: var(--color-primario);
+}
+.filter-container label:hover {
+background-color: var(--color-primario-hover);
+color: var(--color-boton-texto);
+border-color: var(--color-primario-hover);
 }
 
 
 /* --- Tabla de Horarios --- */
 #horarios {
-  margin: 3rem 1rem; /* Añadido margen lateral */
-  overflow-x: auto; /* Para responsividad en tablas */
+margin: 3rem 1rem;
+overflow-x: auto;
 }
 #horarios h2 {
-  color: var(--color-titulos);
-  text-align: center;
-  margin-bottom: 1.5rem;
-  transition: color var(--transicion-rapida);
+color: var(--color-titulos);
+text-align: center;
+margin-bottom: 1.5rem;
+transition: color var(--transicion-rapida);
 }
 
 table {
-  width: 100%;
-  min-width: 600px; /* Ancho mínimo para evitar que se comprima demasiado */
-  border-collapse: collapse;
-  background-color: var(--color-card-fondo);
-  color: var(--color-texto);
-  box-shadow: var(--sombra-suave);
-  border-radius: 8px;
-  overflow: hidden; /* Para que el borde redondeado afecte */
-  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+width: 100%;
+min-width: 600px;
+border-collapse: collapse;
+background-color: var(--color-card-fondo);
+color: var(--color-texto);
+box-shadow: var(--sombra-suave);
+border-radius: 8px;
+overflow: hidden;
+transition: background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
 }
 
 th, td {
-  border: 1px solid var(--color-borde-suave);
-  padding: 0.8rem 1rem;
-  text-align: center;
-  transition: border-color var(--transicion-rapida);
-  white-space: nowrap; /* Evitar que el texto se rompa en celdas */
+border: 1px solid var(--color-borde-suave);
+padding: 0.8rem 1rem;
+text-align: center;
+transition: border-color var(--transicion-rapida);
+white-space: nowrap;
 }
 
 thead {
-  background-color: var(--color-header-fondo); /* O un color específico para header de tabla */
-  color: var(--color-header-texto);
-  transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+background-color: var(--color-header-fondo);
+color: var(--color-header-texto);
+transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
 }
 
 th {
-  font-weight: bold;
+font-weight: bold;
 }
 
 tbody tr:nth-child(even) {
-  background-color: var(--color-fondo); /* Fondo ligeramente diferente para filas pares */
-  transition: background-color var(--transicion-rapida);
+background-color: var(--color-fondo);
+transition: background-color var(--transicion-rapida);
 }
-/* En modo oscuro, quizás quieras que las filas pares sean un poco más claras que las impares */
 body.dark-mode tbody tr:nth-child(even) {
- background-color: #2a2a2a; /* Ejemplo */
+background-color: #2a2a2a;
 }
 
 tbody tr:hover {
-  background-color: var(--color-primario-hover); /* O un color de hover más sutil */
-  color: var(--color-boton-texto); /* Texto claro sobre hover */
+background-color: var(--color-primario-hover);
+color: var(--color-boton-texto);
 }
 body.dark-mode tbody tr:hover {
-  background-color: var(--color-primario);
-  color: var(--color-boton-texto);
+background-color: var(--color-primario);
+color: var(--color-boton-texto);
 }
 
 
 /* --- Secciones de Información --- */
 .class-info {
-  background-color: var(--color-card-fondo);
-  padding: 2rem;
-  margin: 2rem 1rem; /* Añadido margen lateral */
-  border-radius: 8px;
-  border: 1px solid var(--color-borde-suave);
-  transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), color var(--transicion-rapida);
+background-color: var(--color-card-fondo);
+padding: 2rem;
+margin: 2rem 1rem;
+border-radius: 8px;
+border: 1px solid var(--color-borde-suave);
+transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), color var(--transicion-rapida);
 }
 
 .class-info h2 {
-  color: var(--color-titulos);
-  margin-bottom: 1rem;
-  transition: color var(--transicion-rapida);
+color: var(--color-titulos);
+margin-bottom: 1rem;
+transition: color var(--transicion-rapida);
 }
 .class-info h3 {
-  color: var(--color-titulos); /* O --color-texto si prefieres */
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-  transition: color var(--transicion-rapida);
+color: var(--color-titulos);
+margin-top: 1.5rem;
+margin-bottom: 0.5rem;
+transition: color var(--transicion-rapida);
 }
 
 .class-info p, .class-info li {
-  color: var(--color-texto);
-  margin-bottom: 1rem;
-  line-height: 1.7;
-  transition: color var(--transicion-rapida);
+color: var(--color-texto);
+margin-bottom: 1rem;
+line-height: 1.7;
+transition: color var(--transicion-rapida);
 }
 
 .class-info ul {
-  list-style: disc;
-  margin-left: 20px;
-  padding-left: 0; /* Resetear padding por defecto */
+list-style: disc;
+margin-left: 20px;
+padding-left: 0;
 }
 
 .class-info a {
-  color: var(--color-primario);
-  font-weight: bold;
+color: var(--color-primario);
+font-weight: bold;
 }
 .class-info a:hover {
-  color: var(--color-primario-hover);
+color: var(--color-primario-hover);
 }
 
-
-/* --- INICIO: REGLAS RESPONSIVAS --- */
-
-/* Tablets (ej. <= 992px) */
-@media (max-width: 992px) {
-    .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Reducir minmax */
-        gap: 1rem; /* Reducir gap */
-    }
-    .grid-item img {
-        height: 350px; /* Reducir altura */
-    }
-    th, td {
-        padding: 0.7rem 0.8rem; /* Reducir padding tabla */
-    }
-}
-
-/* Móviles y Tablets pequeñas (ej. <= 768px) */
+/* --- Responsive (Ajustes adicionales si son necesarios) --- */
 @media (max-width: 768px) {
-    #filtros {
-        padding: 1rem;
-        margin-bottom: 1.5rem;
-    }
-    .filter-container {
-        gap: 0.8rem;
-    }
-    .filter-container label {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
-    }
-    #galeria-clases {
-        padding: 0 0.5rem; /* Menos padding lateral */
-    }
-    .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Reducir más minmax */
-    }
-    .grid-item img {
-        height: 300px;
-    }
-    .overlay h3 {
-        font-size: 1.1rem;
-    }
-    .overlay p {
-        font-size: 0.85rem;
-    }
-    #horarios {
-        margin: 2rem 0.5rem; /* Menos margen */
-    }
-    th, td {
-        padding: 0.6rem 0.5rem; /* Menos padding */
-        font-size: 0.9rem; /* Reducir fuente tabla */
-    }
-    .class-info {
-        padding: 1.5rem;
-        margin: 1.5rem 0.5rem;
-    }
-    .class-info h2 {
-        font-size: 1.5rem;
-    }
-     .class-info h3 {
-        font-size: 1.2rem;
-    }
-    .class-info p, .class-info li {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
+  #filtros {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+  }
+  .filter-container {
+      gap: 0.8rem;
+  }
+  .filter-container label {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+  }
+  #horarios {
+      margin: 2rem 0.5rem;
+  }
+  th, td {
+      padding: 0.6rem 0.5rem;
+      font-size: 0.9rem;
+  }
+  .class-info {
+      padding: 1.5rem;
+      margin: 1.5rem 0.5rem;
+  }
+  .class-info h2 {
+      font-size: 1.5rem;
+  }
+   .class-info h3 {
+      font-size: 1.2rem;
+  }
+  .class-info p, .class-info li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+  }
 }
 
-/* Móviles pequeños (ej. <= 480px) */
 @media (max-width: 480px) {
-    #filtros {
-        padding: 0.8rem;
-    }
-    #filtros h2 {
-        font-size: 1.3rem;
-        margin-bottom: 0.8rem;
-    }
-    .filter-container {
-        gap: 0.5rem;
-    }
-    .filter-container label {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.85rem;
-    }
-    .grid-container {
-        /* Forzar una columna */
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    .grid-item img {
-        height: 250px; /* Altura para una columna */
-    }
-    th, td {
-        padding: 0.5rem 0.4rem;
-        font-size: 0.85rem;
-    }
-    table {
-        min-width: 400px; /* Ajustar ancho mínimo si es necesario */
-    }
-    .class-info {
-        padding: 1rem;
-        margin: 1rem 0.5rem;
-    }
-     .class-info h2 {
-        font-size: 1.4rem;
-    }
-     .class-info h3 {
-        font-size: 1.1rem;
-    }
-    .class-info p, .class-info li {
-        font-size: 0.9rem;
-    }
+  #filtros {
+      padding: 0.8rem;
+  }
+  #filtros h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+  }
+  .filter-container {
+      gap: 0.5rem;
+  }
+  .filter-container label {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+  }
+  th, td {
+      padding: 0.5rem 0.4rem;
+      font-size: 0.85rem;
+  }
+  table {
+      min-width: 400px;
+  }
+  .class-info {
+      padding: 1rem;
+      margin: 1rem 0.5rem;
+  }
+   .class-info h2 {
+      font-size: 1.4rem;
+  }
+   .class-info h3 {
+      font-size: 1.1rem;
+  }
+  .class-info p, .class-info li {
+      font-size: 0.9rem;
+  }
 }
-
-/* --- FIN: REGLAS RESPONSIVAS --- */
