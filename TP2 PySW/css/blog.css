@@ -33,6 +33,9 @@
     position: sticky; /* Hacer que el sidebar se quede fijo al hacer scroll */
     top: 80px; /* Ajustar según la altura de tu header sticky */
     transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+    /* Limitar altura y permitir scroll interno si es muy largo */
+    max-height: calc(100vh - 100px); /* Ajustar 100px según header + espacio */
+    overflow-y: auto;
 }
 
 .filter-group {
@@ -150,6 +153,11 @@
 
 
 /* Estilo de Tags como botones */
+.tags { /* Añadido contenedor para tags si es necesario */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 .tags label {
     background-color: var(--color-fondo);
     border: 1px solid var(--color-borde-suave);
@@ -158,6 +166,7 @@
     font-size: 0.85rem;
     transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
     padding-left: 12px; /* Resetear padding para tags */
+    margin: 0; /* Quitar margen si está dentro de .filter-list li */
 }
 .tags label::before, .tags label::after {
     display: none; /* Ocultar controles personalizados para tags */
@@ -182,24 +191,24 @@
 
 /* --- Artículos --- */
 .articles {
-    flex: 3 1 800px; /* Ocupar más espacio, ancho base 600px */
+    flex: 3 1 600px; /* Ajustado flex-basis */
     display: grid;
-    /* Usar auto-fill para llenar el espacio, min 300px por artículo */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 250px; /* Espacio entre artículos */
+    /* Usar auto-fill para llenar el espacio, min 280px por artículo */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem; /* Espacio entre artículos */
 }
 
 .blog-article {
     background-color: var(--color-card-fondo);
-    width: 500px;
-    margin-left: 10px;
-    text-align: center;
+    /* width: 500px; -> Controlado por grid */
+    /* margin-left: 10px; -> Controlado por grid gap */
+    text-align: left; /* Alinear texto a la izquierda */
     border-radius: 8px;
     border: 1px solid var(--color-borde-suave);
     box-shadow: var(--sombra-suave);
-    padding: 100; /* Quitar padding general, se aplica a secciones internas */
-    overflow: hidden; /* Asegurar que la imagen no se salga */
-    display: flex; /* Usar flex para mejor control interno */
+    /* padding: 100; -> Eliminado, usar .article-content */
+    overflow: hidden;
+    display: flex;
     flex-direction: column;
     transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida),
                 background-color var(--transicion-rapida), border-color var(--transicion-rapida);
@@ -212,55 +221,55 @@
 
 .blog-article img {
     width: 100%;
-    height: 225px;
+    height: 200px; /* Altura ajustada */
     object-fit: cover;
-    /* Quitar margen y borde redondeado de aquí, se maneja en el contenedor */
-    display: block; /* Evitar espacio extra debajo */
+    display: block;
     transition: transform var(--transicion-rapida), filter 0.3s ease;
 }
 
 .blog-article:hover img {
     transform: scale(1.05);
-    filter: brightness(1.1); /* Aclarar un poco al hacer hover */
+    filter: brightness(1.1);
 }
 
-.article-content { /* Contenedor para texto y botón */
-    padding: 100px;
-    flex-grow: 1; /* Ocupar espacio restante */
+.article-content {
+    padding: 1rem; /* Padding consistente */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .blog-article h3 {
     color: var(--color-titulos);
-    margin: 0 0 0.8rem 0; /* Ajustar márgenes */
-    font-size: 1.3rem;
+    margin: 0 0 0.8rem 0;
+    font-size: 1.2rem; /* Tamaño ajustado */
     transition: color var(--transicion-rapida);
 }
 
 .blog-article p {
     color: var(--color-texto);
-    margin: 0 0 1rem 0; /* Margen inferior */
-    align-content: center;
+    margin: 0 0 1rem 0;
+    /* align-content: center; -> No aplica a p */
     font-size: 0.95rem;
     line-height: 1.6;
-    flex-grow: 1; /* Empujar botón hacia abajo si hay poco texto */
+    flex-grow: 1;
     transition: color var(--transicion-rapida);
 }
 
 .blog-article .btn {
-    margin-left: 200px;
-    margin-top: 2px;
-    align-self: flex-start; /* Alinear a la izquierda */
+    /* margin-left: 200px; -> Eliminado */
+    margin-top: auto; /* Empujar al final */
+    align-self: flex-start;
     /* Hereda estilos de .btn */
 }
 
-/* --- Sección de Comentarios --- */
+/* --- Sección de Comentarios (Opcional dentro del artículo) --- */
 .comments {
-    background-color: var(--color-fondo); /* Fondo ligeramente diferente */
-    padding: 1rem 1.5rem;
+    background-color: var(--color-fondo);
+    padding: 1rem 1rem; /* Padding ajustado */
     border-top: 1px solid var(--color-borde-suave);
     transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+    margin-top: auto; /* Asegurar que esté al final si se incluye */
 }
 
 .comments h4 {
@@ -273,11 +282,11 @@
 
 .comment {
     display: flex;
-    align-items: flex-start; /* Alinear avatar arriba */
-    gap: 0.8rem; /* Espacio entre avatar y texto */
+    align-items: flex-start;
+    gap: 0.8rem;
     margin-bottom: 0.8rem;
     padding-bottom: 0.8rem;
-    border-bottom: 1px dashed var(--color-borde-suave); /* Separador sutil */
+    border-bottom: 1px dashed var(--color-borde-suave);
     transition: border-color var(--transicion-rapida);
 }
 .comment:last-child {
@@ -290,10 +299,10 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--color-borde-suave); /* Color placeholder */
+    background-color: var(--color-borde-suave);
     background-size: cover;
     background-position: center;
-    flex-shrink: 0; /* Evitar que el avatar se encoja */
+    flex-shrink: 0;
     transition: background-color var(--transicion-rapida);
 }
 
@@ -305,24 +314,117 @@
     transition: color var(--transicion-rapida);
 }
 .comment p strong {
-    color: var(--color-primario); /* Resaltar nombre */
-    display: block; /* Nombre en línea separada */
+    color: var(--color-primario);
+    display: block;
     margin-bottom: 0.2rem;
     transition: color var(--transicion-rapida);
 }
 
 
-/* --- Responsive --- */
+/* --- INICIO: REGLAS RESPONSIVAS --- */
+
+/* Tablets (ej. <= 992px) */
+@media (max-width: 992px) {
+    .blog-container {
+        gap: 1.5rem;
+    }
+    .sidebar {
+        flex-basis: 220px; /* Sidebar un poco más estrecho */
+        top: 70px; /* Ajustar si el header es más pequeño */
+        max-height: calc(100vh - 90px);
+    }
+    .articles {
+        flex-basis: calc(100% - 220px - 1.5rem); /* Calcular ancho restante */
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Ajustar minmax */
+        gap: 1rem;
+    }
+    .blog-article img {
+        height: 180px; /* Reducir altura imagen */
+    }
+}
+
+
+/* Móviles y Tablets pequeñas (ej. <= 768px) */
 @media (max-width: 768px) {
+    #blog {
+        padding: 1.5rem;
+    }
     .blog-container {
         flex-direction: column; /* Sidebar arriba */
+        gap: 1.5rem;
     }
     .sidebar {
         width: 100%; /* Ocupar todo el ancho */
         position: static; /* Quitar sticky en móvil */
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem; /* Espacio debajo del sidebar */
+        max-height: none; /* Quitar límite de altura */
+        overflow-y: visible; /* Quitar scroll */
     }
     .articles {
         width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajustar minmax */
+    }
+    .blog-article {
+        /* El grid ya maneja el ancho */
     }
 }
+
+/* Móviles pequeños (ej. <= 480px) */
+@media (max-width: 480px) {
+    #blog {
+        padding: 1rem;
+    }
+    #blog h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    .sidebar {
+        padding: 1rem;
+    }
+    .sidebar h3 {
+        font-size: 1.1rem;
+    }
+    .filter-list label {
+        font-size: 0.9rem;
+        padding-left: 25px;
+    }
+    .filter-list label::before {
+        width: 16px;
+        height: 16px;
+    }
+    .filter-list label::after {
+        left: 4px;
+        top: 4px;
+        width: 8px;
+        height: 8px;
+    }
+    .tags label {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+    .articles {
+        /* Mostrar una columna */
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .blog-article {
+        /* El grid ya maneja el ancho */
+    }
+    .blog-article img {
+        height: 160px;
+    }
+    .blog-article h3 {
+        font-size: 1.1rem;
+    }
+    .blog-article p {
+        font-size: 0.9rem;
+    }
+    .comments {
+        padding: 0.8rem;
+    }
+    .comment p {
+        font-size: 0.85rem;
+    }
+}
+
+/* --- FIN: REGLAS RESPONSIVAS --- */

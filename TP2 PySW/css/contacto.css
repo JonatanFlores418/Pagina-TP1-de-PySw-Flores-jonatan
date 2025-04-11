@@ -157,6 +157,8 @@ body.dark-mode { --color-error: #ff6b6b; --color-error-rgb: 255, 107, 107; }
     opacity: 1;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     visibility: visible;
+    padding: 1rem; /* Añadir padding para evitar que el modal toque los bordes en móvil */
+    box-sizing: border-box;
 }
 
 .modal.hidden {
@@ -171,7 +173,7 @@ body.dark-mode { --color-error: #ff6b6b; --color-error-rgb: 255, 107, 107; }
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 400px; /* Ancho máximo */
-    width: 90%;
+    width: 100%; /* Ajustado para ocupar el padding del modal padre */
     border-top: 5px solid var(--color-exito, #2ecc71); /* Borde superior de éxito */
     transform: scale(1);
     transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), transform 0.3s ease;
@@ -229,3 +231,100 @@ body.dark-mode { --color-exito: #58d68d; }
 .hidden {
     display: none !important;
 }
+
+
+/* --- INICIO: REGLAS RESPONSIVAS --- */
+
+/* Tablets y pantallas medianas (ej. <= 768px) */
+@media (max-width: 768px) {
+    #contacto {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+        max-width: 90%; /* Permitir que ocupe más ancho */
+    }
+
+    #contacto h2 {
+        font-size: 1.8rem; /* Ajustar tamaño */
+    }
+
+    #contacto .intro-text {
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .form-group {
+        gap: 1rem; /* Reducir espacio */
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 10px 12px; /* Menos padding */
+        font-size: 0.95rem;
+    }
+
+    .modal-content {
+        padding: 2rem; /* Menos padding en modal */
+    }
+
+    .modal-content h3 {
+        font-size: 1.3rem;
+    }
+    .modal-content p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Móviles pequeños (ej. <= 480px) */
+@media (max-width: 480px) {
+    #contacto {
+        padding: 1rem;
+        margin: 1rem auto;
+        max-width: 95%; /* Casi ancho completo */
+        border-radius: 8px; /* Menos redondeo */
+    }
+
+    #contacto h2 {
+        font-size: 1.6rem;
+    }
+
+    #contacto .intro-text {
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-submit {
+        padding: 10px 20px;
+        font-size: 1rem;
+        min-height: 44px;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
+    }
+    .modal-icon {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.5rem;
+    }
+    .modal-content h3 {
+        font-size: 1.2rem;
+    }
+    .modal-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* --- FIN: REGLAS RESPONSIVAS --- */

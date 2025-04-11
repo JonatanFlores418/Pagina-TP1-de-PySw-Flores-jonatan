@@ -54,9 +54,9 @@
 
 .card-inner {
     position: relative;
-    margin-top: 80px;
-    width: 89%; /* Ocupar todo el ancho de .card */
-    height: 90%;
+    /* margin-top: 80px; -> Eliminado, el padding del padre lo maneja */
+    width: 100%; /* Ajustado para ocupar todo el ancho */
+    height: 100%; /* Ajustado para ocupar toda la altura */
     transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); /* Transición más suave */
     transform-style: preserve-3d;
 }
@@ -84,6 +84,7 @@
     padding: 1.5rem; /* Padding interno */
     overflow: hidden; /* Evitar desbordes */
     transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+    box-sizing: border-box; /* Incluir padding en el tamaño */
 }
 
 .card-front img {
@@ -91,6 +92,7 @@
     height: 150px;
     object-fit: cover;
     border-radius: 50%; /* Hacer la imagen redonda */
+    margin-top: 1rem; /* Añadido margen superior */
     margin-bottom: 1rem; /* Espacio debajo de la imagen */
     border: 3px solid var(--color-primario); /* Borde con color primario */
     box-shadow: var(--sombra-suave);
@@ -115,25 +117,29 @@
 .card-back {
     transform: rotateY(180deg);
     justify-content: space-around; /* Distribuir espacio verticalmente */
-    padding: 1px; /* Padding ligeramente menor para más contenido */
-    margin-left: -20px;
-    margin-right: 700px;
-    margin-top: -70px;
+    padding: 1.5rem; /* Padding consistente */
+    /* margin-left: -20px; -> Eliminado */
+    /* margin-right: 700px; -> Eliminado */
+    /* margin-top: -70px; -> Eliminado */
+    overflow-y: auto; /* Permitir scroll si el contenido es muy largo */
 }
 
 .card-back h3 {
     color: var(--color-titulos);
+    margin-top: 0.5rem; /* Añadido margen superior */
     margin-bottom: 0.8rem;
     font-size: 1.3rem;
     transition: color var(--transicion-rapida);
 }
 
-.card-back p {
+.card-back p.description { /* Añadida clase para descripción */
     color: var(--color-texto);
     font-size: 0.95rem; /* Texto ligeramente más pequeño */
     line-height: 1.5;
     margin-bottom: 1rem; /* Espacio después del párrafo */
     transition: color var(--transicion-rapida);
+    max-height: 100px; /* Limitar altura y permitir scroll si es necesario */
+    overflow-y: auto;
 }
 
 .habilidad {
@@ -171,6 +177,7 @@
     line-height: 12px; /* Alinear verticalmente */
     border-radius: 10px; /* Heredar borde */
     transition: width 0.8s ease-out, background-color var(--transicion-rapida), color var(--transicion-rapida); /* Transición suave */
+    box-sizing: border-box; /* Incluir padding */
 }
 
 .rating {
@@ -193,3 +200,121 @@
     /* Usar variable para color activo */
     background-color: var(--color-titulos); /* Usar el amarillo/dorado de los títulos */
 }
+
+
+/* --- INICIO: REGLAS RESPONSIVAS --- */
+
+/* Tablets y pantallas medianas (ej. <= 992px) */
+@media (max-width: 992px) {
+    .cards-container {
+        gap: 40px; /* Reducir espacio */
+    }
+    .card {
+        min-height: 550px; /* Reducir altura mínima */
+    }
+}
+
+/* Móviles y pantallas pequeñas (ej. <= 768px) */
+@media (max-width: 768px) {
+    #entrenadores {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+    #entrenadores .intro-text {
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+    }
+    .cards-container {
+        gap: 30px;
+    }
+    .card {
+        width: clamp(280px, 85%, 350px); /* Ajustar clamp */
+        min-height: 500px; /* Reducir más la altura mínima */
+        border-radius: 12px; /* Menos redondeo */
+    }
+    .card-front, .card-back {
+        padding: 1rem; /* Menos padding */
+        border-radius: 12px;
+    }
+    .card-front img {
+        width: 120px;
+        height: 120px;
+    }
+    .card-front h3, .card-back h3 {
+        font-size: 1.2rem;
+    }
+    .card-front p {
+        font-size: 1rem;
+    }
+    .card-back p.description {
+        font-size: 0.9rem;
+        max-height: 80px; /* Menos altura para descripción */
+    }
+    .habilidad {
+        width: 95%; /* Ocupar más ancho */
+    }
+    .habilidad p {
+        font-size: 0.85rem;
+    }
+    .barra-habilidad {
+        height: 10px;
+    }
+    .barra-progreso {
+        line-height: 10px;
+        font-size: 0.65rem;
+    }
+    .star {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Móviles muy pequeños (ej. <= 480px) */
+@media (max-width: 480px) {
+    #entrenadores {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+    .cards-container {
+        gap: 20px;
+    }
+    .card {
+        width: clamp(250px, 90%, 320px); /* Ajustar clamp */
+        min-height: 480px;
+        border-radius: 10px;
+    }
+    .card-front, .card-back {
+        padding: 0.8rem;
+        border-radius: 10px;
+    }
+    .card-front img {
+        width: 100px;
+        height: 100px;
+        border-width: 2px;
+    }
+    .card-front h3, .card-back h3 {
+        font-size: 1.1rem;
+    }
+    .card-front p {
+        font-size: 0.95rem;
+    }
+    .card-back p.description {
+        font-size: 0.85rem;
+    }
+    .habilidad p {
+        font-size: 0.8rem;
+    }
+    .barra-habilidad {
+        height: 8px;
+    }
+    .barra-progreso {
+        line-height: 8px;
+        font-size: 0.6rem;
+    }
+    .star {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* --- FIN: REGLAS RESPONSIVAS --- */
