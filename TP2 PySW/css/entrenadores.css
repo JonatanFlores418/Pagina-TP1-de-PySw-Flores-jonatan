@@ -1,0 +1,195 @@
+/* Entrenadores Page Styles - Adaptado para Dark Mode y Mejoras Visuales */
+
+#entrenadores {
+    padding: 2rem; /* Usar rem para consistencia */
+    text-align: center;
+    /* Usar variable para el fondo de la sección, con fallback */
+    background-color: var(--color-fondo-seccion, var(--color-fondo));
+    /* Sombra suave usando variable */
+    box-shadow: var(--sombra-suave);
+    max-width: 1900px; /* Ajustado para mejor visualización en pantallas grandes */
+    margin: 2rem auto; /* Margen vertical y centrado horizontal */
+    border-radius: 8px; /* Bordes redondeados para la sección */
+    transition: background-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+/* Estilo para el párrafo introductorio */
+#entrenadores .intro-text {
+    color: var(--color-texto);
+    margin: 0 auto 2rem auto; /* Margen inferior y centrado */
+    padding: 0 1rem; /* Padding horizontal */
+    max-width: 800px;
+    text-align: center; /* Centrado es más común para intros */
+    line-height: 1.7;
+    transition: color var(--transicion-rapida);
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px; /* Espacio entre tarjetas */
+    margin-top: 10px; /* Reducido margen superior */
+}
+
+.card {
+    width: clamp(300px, 90%, 400px); /* Ancho responsive: min 300px, max 400px, ideal 90% */
+    /* Altura automática basada en contenido */
+    height: auto;
+    min-height: 600px; /* Altura mínima para mantener proporción */
+    perspective: 1000px;
+    /* Usar variables para fondo y borde */
+    background-color: var(--color-card-fondo);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 15px; /* Bordes más redondeados */
+    box-shadow: var(--sombra-suave);
+    transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida),
+                background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02); /* Efecto hover más pronunciado */
+    box-shadow: var(--sombra-hover);
+}
+
+.card-inner {
+    position: relative;
+    margin-top: 80px;
+    width: 89%; /* Ocupar todo el ancho de .card */
+    height: 90%;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); /* Transición más suave */
+    transform-style: preserve-3d;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%; /* Ocupar toda la altura */
+    backface-visibility: hidden;
+    border-radius: 15px; /* Heredar borde redondeado */
+    /* Usar variables */
+    background-color: var(--color-card-fondo);
+    color: var(--color-texto);
+    display: flex;
+    flex-direction: column;
+    /* Alineación y justificación */
+    justify-content: flex-start; /* Empezar desde arriba */
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem; /* Padding interno */
+    overflow: hidden; /* Evitar desbordes */
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+.card-front img {
+    width: 150px; /* Tamaño fijo para la foto de perfil */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Hacer la imagen redonda */
+    margin-bottom: 1rem; /* Espacio debajo de la imagen */
+    border: 3px solid var(--color-primario); /* Borde con color primario */
+    box-shadow: var(--sombra-suave);
+    transition: border-color var(--transicion-rapida);
+}
+
+.card-front h3 {
+    color: var(--color-titulos); /* Variable para títulos */
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    transition: color var(--transicion-rapida);
+}
+.card-front p {
+    color: var(--color-texto);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    transition: color var(--transicion-rapida);
+}
+
+
+.card-back {
+    transform: rotateY(180deg);
+    justify-content: space-around; /* Distribuir espacio verticalmente */
+    padding: 1px; /* Padding ligeramente menor para más contenido */
+    margin-left: -20px;
+    margin-right: 700px;
+    margin-top: -70px;
+}
+
+.card-back h3 {
+    color: var(--color-titulos);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    transition: color var(--transicion-rapida);
+}
+
+.card-back p {
+    color: var(--color-texto);
+    font-size: 0.95rem; /* Texto ligeramente más pequeño */
+    line-height: 1.5;
+    margin-bottom: 1rem; /* Espacio después del párrafo */
+    transition: color var(--transicion-rapida);
+}
+
+.habilidad {
+    margin-bottom: 0.8rem; /* Reducir margen */
+    width: 90%; /* Ancho relativo al contenedor */
+    text-align: left; /* Alinear texto a la izquierda */
+}
+.habilidad p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem; /* Menos espacio entre texto y barra */
+    color: var(--color-texto);
+    transition: color var(--transicion-rapida);
+}
+
+.barra-habilidad {
+    width: 100%;
+    height: 12px; /* Barra más delgada */
+    /* Usar variable para fondo de barra */
+    background-color: var(--color-borde-suave);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: background-color var(--transicion-rapida);
+}
+
+.barra-progreso {
+    height: 100%;
+    /* Usar variable para color de progreso */
+    background-color: var(--color-primario);
+    text-align: right;
+    color: var(--color-boton-texto); /* Texto sobre la barra */
+    font-size: 0.7rem; /* Texto más pequeño */
+    font-weight: bold;
+    padding-right: 5px;
+    line-height: 12px; /* Alinear verticalmente */
+    border-radius: 10px; /* Heredar borde */
+    transition: width 0.8s ease-out, background-color var(--transicion-rapida), color var(--transicion-rapida); /* Transición suave */
+}
+
+.rating {
+    margin-top: 1rem; /* Más espacio arriba */
+}
+
+.star {
+    display: inline-block;
+    width: 20px; /* Estrellas un poco más grandes */
+    height: 20px;
+    /* Usar variable para color inactivo */
+    background-color: var(--color-borde-suave);
+    -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    margin: 0 2px;
+    transition: background-color var(--transicion-rapida);
+}
+
+.star.active {
+    /* Usar variable para color activo */
+    background-color: var(--color-titulos); /* Usar el amarillo/dorado de los títulos */
+}

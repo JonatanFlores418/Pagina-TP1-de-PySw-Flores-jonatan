@@ -1,0 +1,549 @@
+/* styles.css (Modificado para Dark Mode) */
+:root {
+    /* Paleta Modo Claro */
+    --color-fondo: #f0f0f0; /* Un gris muy claro en lugar de blanco puro */
+    --color-texto: #333333;
+    --color-primario: #0077cc; /* Azul principal */
+    --color-primario-hover: #005fa3;
+    --color-titulos: #d6b80f; /* Amarillo/Dorado para títulos */
+    --color-header-fondo: #9aa22a; /* Verde oliva */
+    --color-header-texto: #ffffff;
+    --color-header-hover: #555555;
+    --color-dropdown-fondo: #333333;
+    --color-footer-fondo: #1c1c1b;
+    --color-footer-texto: #ffffff;
+    --color-boton-texto: #ffffff;
+    --color-card-fondo: #ffffff; /* Fondo para tarjetas */
+    --color-borde-suave: #dddddd; /* Para bordes sutiles */
+    --sombra-suave: 0 2px 5px rgba(0, 0, 0, 0.15);
+    --sombra-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+    /* Transición general */
+    --transicion-rapida: 0.3s ease;
+    --transicion-corta: 0.2s ease;
+  }
+  
+  /* Modo oscuro */
+  body.dark-mode {
+    /* Paleta Modo Oscuro */
+    --color-fondo: #121212; /* Negro/Gris muy oscuro */
+    --color-texto: #e0e0e0; /* Gris claro para texto */
+    --color-primario: #3498db; /* Azul más brillante */
+    --color-primario-hover: #5dade2;
+    --color-titulos: #f1c40f; /* Amarillo más brillante */
+    --color-header-fondo: #4a5014; /* Verde oliva oscuro */
+    --color-header-texto: #e0e0e0;
+    --color-header-hover: #777777;
+    --color-dropdown-fondo: #444444;
+    --color-footer-fondo: #2c2c2c;
+    --color-footer-texto: #e0e0e0;
+    --color-boton-texto: #ffffff; /* Puede seguir siendo blanco */
+    --color-card-fondo: #1e1e1e; /* Fondo oscuro para tarjetas */
+    --color-borde-suave: #444444; /* Borde oscuro */
+    --sombra-suave: 0 2px 5px rgba(255, 255, 255, 0.1); /* Sombra clara */
+    --sombra-hover: 0 4px 8px rgba(255, 255, 255, 0.15);
+  }
+  
+  /* General Styles */
+  body {
+    /* USA LAS VARIABLES Y QUITA LOS VALORES FIJOS CONFLICTIVOS */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida); /* Transición para el body */
+  }
+  
+  h1, h2, h3 {
+    color: var(--color-titulos);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    transition: color var(--transicion-rapida);
+  }
+  
+  a {
+    color: var(--color-primario);
+    text-decoration: none;
+    transition: color var(--transicion-rapida);
+  }
+  
+  a:hover {
+    color: var(--color-primario-hover);
+    text-decoration: underline;
+  }
+  
+  .btn {
+    background-color: var(--color-primario);
+    color: var(--color-boton-texto);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transicion-rapida), transform var(--transicion-corta), box-shadow var(--transicion-corta);
+    box-shadow: var(--sombra-suave);
+  }
+  
+  .btn:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+    text-decoration: none; /* Evita el subrayado del 'a:hover' general */
+  }
+  
+  /* Header */
+  header {
+    background-color: var(--color-header-fondo);
+    color: var(--color-header-texto); /* Usar variable para el texto del header si es necesario */
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra-suave);
+    transition: background-color var(--transicion-rapida);
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin: 0 5px; /* Reducir un poco el margen */
+    position: relative;
+  }
+  
+  nav ul li a {
+    color: var(--color-header-texto);
+    text-decoration: none;
+    padding: 10px 15px; /* Ajustar padding */
+    display: block;
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+  }
+  
+  nav ul li a:hover {
+    background-color: var(--color-header-hover);
+    color: var(--color-header-texto); /* Asegurar que el texto siga siendo visible */
+    text-decoration: none;
+  }
+  
+  /* Estilos para el botón Dark Mode */
+  #darkModeToggle {
+    background: none;
+    border: 1px solid var(--color-header-texto); /* Borde del color del texto del nav */
+    color: var(--color-header-texto);
+    padding: 6px 10px; /* Ajustar padding para que se alinee mejor */
+    cursor: pointer;
+    border-radius: 20px; /* Más redondeado */
+    font-size: 0.9em;
+    margin-left: 10px; /* Espacio respecto al último item */
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+    vertical-align: middle; /* Alinear verticalmente con los links */
+    display: inline-flex; /* Para alinear icono y texto */
+    align-items: center;
+    gap: 5px;
+  }
+  
+  #darkModeToggle:hover {
+    background-color: var(--color-header-texto); /* Fondo blanco/claro al pasar */
+    color: var(--color-header-fondo); /* Texto del color de fondo del header */
+  }
+  
+  #darkModeToggle .text.hidden-mobile {
+      /* Ocultar texto en móviles si se desea */
+      /* @media (max-width: 768px) { display: none; } */
+  }
+  
+  
+  nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%; /* Posicionar justo debajo del item padre */
+    left: 0; /* Alinear a la izquierda del item padre */
+    background-color: var(--color-dropdown-fondo);
+    box-shadow: var(--sombra-suave);
+    border-radius: 5px;
+    min-width: 150px; /* Ancho mínimo */
+    padding: 5px 0; /* Padding vertical */
+    z-index: 101; /* Asegurar que esté sobre otros elementos */
+    transition: background-color var(--transicion-rapida);
+  }
+  
+  nav ul li:hover > ul {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  nav ul ul li {
+    display: block;
+    width: 100%;
+    margin: 0; /* Resetear margen */
+  }
+  
+  nav ul ul li a {
+    padding: 10px 15px; /* Padding interno */
+    color: var(--color-header-texto); /* Usar el mismo color de texto que el nav principal */
+    white-space: nowrap; /* Evitar que el texto se rompa */
+  }
+  
+  nav ul ul li a:hover {
+    background-color: var(--color-header-hover); /* Mismo hover que el nav principal */
+  }
+ /* Footer - Nueva Estructura */
+footer {
+  background-color: var(--color-footer-fondo);
+  color: var(--color-footer-texto);
+  padding: 3rem 1rem 1rem 1rem; /* Más padding arriba */
+  margin-top: 4rem; /* Más espacio antes del footer */
+  border-top: 4px solid var(--color-primario);
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; /* Para que las columnas se apilen en móvil */
+  justify-content: space-between; /* Distribuir espacio */
+  gap: 2rem; /* Espacio entre columnas */
+  max-width: 1200px; /* Ancho máximo del contenido */
+  margin: 0 auto 2rem auto; /* Centrar y margen inferior */
+  text-align: left; /* Alinear texto a la izquierda por defecto */
+}
+
+.footer-column {
+  flex: 1; /* Que las columnas intenten ocupar el mismo espacio */
+  min-width: 250px; /* Ancho mínimo para cada columna */
+}
+
+/* Columna 1: About/Logo */
+.footer-about .footer-logo {
+  color: var(--color-titulos); /* Usar color de títulos o blanco */
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  transition: color var(--transicion-rapida);
+}
+/* Si usas imagen:
+.footer-about .footer-logo img {
+  max-height: 50px;
+  margin-bottom: 1rem;
+}
+*/
+.footer-about .footer-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+}
+
+/* Social Links en Columna 1 */
+.footer-about .social-links {
+  display: flex;
+  gap: 1rem; /* Espacio entre iconos */
+  align-items: center;
+}
+
+.footer-about .social-links a {
+  color: var(--color-footer-texto);
+  opacity: 0.8;
+  transition: transform var(--transicion-corta), opacity var(--transicion-corta);
+}
+.footer-about .social-links a:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.footer-about .social-links img {
+  height: 28px; /* Tamaño de iconos sociales */
+  width: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(var(--invert-social, 1));
+  transition: filter var(--transicion-rapida);
+}
+
+/* Columna 2: Enlaces Rápidos */
+.footer-links h4,
+.footer-newsletter-map h4 {
+  color: var(--color-footer-texto); /* O --color-titulos si prefieres */
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea sutil */
+  padding-bottom: 0.5rem;
+  transition: color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+body.dark-mode .footer-links h4,
+body.dark-mode .footer-newsletter-map h4 {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: var(--color-footer-texto);
+  text-decoration: none;
+  opacity: 0.8;
+  transition: color var(--transicion-rapida), opacity var(--transicion-rapida), padding-left var(--transicion-corta);
+  position: relative;
+  padding-left: 0;
+}
+
+.footer-links a:hover {
+  color: var(--color-primario);
+  opacity: 1;
+  padding-left: 8px; /* Desplazar ligeramente al hacer hover */
+}
+/* Opcional: Flecha antes del link al hacer hover */
+.footer-links a:hover::before {
+    content: '› ';
+    position: absolute;
+    left: 0;
+    opacity: 1;
+}
+
+
+/* Columna 3: Newsletter y Mapa */
+#newsletter-form {
+  display: flex; /* Input y botón en línea */
+  flex-direction: column; /* Apilados por defecto */
+  gap: 0.8rem;
+  margin-bottom: 1.5rem; /* Espacio antes del mapa */
+}
+
+footer input[type="email"] {
+  padding: 10px 15px;
+  border: 1px solid var(--color-borde-suave);
+  border-radius: 5px; /* Bordes normales */
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  width: 100%; /* Ocupar ancho de columna */
+  transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+footer input[type="email"]:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(var(--color-primario-rgb, 0, 119, 204), 0.2);
+}
+
+#newsletter-form .btn {
+  padding: 10px 20px;
+  border-radius: 5px; /* Bordes normales */
+  font-weight: 600;
+  width: 100%; /* Ocupar ancho de columna */
+  /* Hereda colores y transiciones */
+}
+
+/* Mapa en Columna 3 */
+footer #map {
+  width: 150%; /* Ocupar ancho de columna */
+  max-width: none; /* Quitar max-width anterior */
+  height: 450px; /* Altura del mapa */
+  margin: 0; /* Quitar margen auto */
+  border: 1px solid var(--color-borde-suave);
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+  overflow: hidden;
+  transition: border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+footer #map iframe {
+  display: block;
+  filter: grayscale(var(--map-grayscale, 0%));
+  transition: filter var(--transicion-rapida);
+}
+footer #map:hover iframe {
+    filter: grayscale(0%);
+}
+
+/* --- Footer Bottom (Copyright) --- */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Línea separadora sutil */
+  padding-top: 1rem;
+  margin-top: 2rem; /* Espacio sobre la línea */
+  text-align: center;
+}
+body.dark-mode .footer-bottom {
+    border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.copyright {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: var(--color-footer-texto);
+  margin: 0; /* Quitar margen por defecto */
+  transition: color var(--transicion-rapida);
+}
+
+/* --- Responsive para el Footer --- */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Apilar columnas */
+    text-align: center; /* Centrar texto en móvil */
+    align-items: center; /* Centrar contenido de columnas */
+  }
+  .footer-column {
+      min-width: 100%; /* Ocupar todo el ancho */
+      margin-bottom: 1.5rem; /* Espacio entre columnas apiladas */
+  }
+  /* Social Links en Columna 1 */
+.footer-about .social-links {
+  display: flex;
+  gap: 1rem; /* Espacio entre iconos */
+  align-items: center;
+}
+
+.footer-about .social-links a {
+  color: var(--color-footer-texto);
+  opacity: 0.8;
+  transition: transform var(--transicion-corta), opacity var(--transicion-corta);
+}
+.footer-about .social-links a:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+/* Social Links en Columna 1 */
+.footer-about .social-links {
+  display: flex;
+  gap: 1rem; /* Espacio entre iconos */
+  align-items: center;
+}
+
+.footer-about .social-links a {
+  color: var(--color-footer-texto);
+  opacity: 0.8;
+  transition: transform var(--transicion-corta), opacity var(--transicion-corta);
+}
+.footer-about .social-links a:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.footer-about .social-links img {
+  height: 28px; /* Tamaño de iconos sociales */
+  width: 28px;
+  object-fit: contain;
+  /* Ya no aplicamos filtro aquí, usarán sus colores originales */
+  transition: transform var(--transicion-corta); /* Puedes mantener una transición si quieres */
+}
+
+
+  .footer-links ul {
+      columns: 2; /* Mostrar links en 2 columnas si hay muchos */
+      -webkit-columns: 2;
+      -moz-columns: 2;
+      gap: 0.5rem;
+  }
+   .footer-links li {
+       text-align: center; /* Centrar texto de links */
+   }
+   .footer-links a:hover {
+       padding-left: 0; /* Quitar desplazamiento en móvil */
+   }
+   .footer-links a:hover::before {
+       display: none; /* Ocultar flecha en móvil */
+   }
+   #newsletter-form {
+       flex-direction: row; /* Input y botón en línea si caben */
+       justify-content: center;
+   }
+   footer input[type="email"] {
+       width: auto; /* Ancho automático */
+       min-width: 200px;
+   }
+   #newsletter-form .btn {
+       width: auto; /* Ancho automático */
+   }
+}
+
+/* Clase sr-only para accesibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Definir variable para escala de grises */
+:root { --map-grayscale: 0%; } /* Color por defecto */
+body.dark-mode { --map-grayscale: 50%; } /* Menos saturado en modo oscuro */
+
+footer #map:hover iframe {
+    filter: grayscale(0%); /* Color completo al pasar el ratón */
+}
+
+/* --- Copyright --- */
+.copyright {
+    margin-top: 1.5rem; /* Espacio sobre el copyright */
+    font-size: 0.85rem;
+    opacity: 0.7;
+    color: var(--color-footer-texto);
+    transition: color var(--transicion-rapida);
+}
+
+  
+  /* Card img (Asegúrate de que las tarjetas usen variables también) */
+  .card { /* Asumiendo que tienes una clase .card */
+      background-color: var(--color-card-fondo);
+      border: 1px solid var(--color-borde-suave);
+      border-radius: 8px;
+      box-shadow: var(--sombra-suave);
+      overflow: hidden; /* Para que el borde redondeado afecte a la imagen */
+      transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+  }
+  .card h3, .card p { /* Estilos para texto dentro de la tarjeta */
+      color: var(--color-texto);
+      padding: 0 15px 15px 15px; /* Padding solo horizontal y abajo */
+      transition: color var(--transicion-rapida);
+  }
+  .card h3 {
+      padding-top: 15px; /* Padding superior solo para el título */
+      color: var(--color-titulos); /* Usar color de títulos si aplica */
+  }
+  
+  
+  .card-img {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center; /* Centrar la imagen */
+    display: block; /* Eliminar espacio extra */
+  }
+  
+  /* Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

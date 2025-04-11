@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio - Blog</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <style>
+        /* Estilo básico para ocultar artículos filtrados */
+        .blog-article.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clases.html">Clases</a>
+                    <ul>
+                        <li><a href="#">Musculación</a></li>
+                        <li><a href="#">CrossFit</a></li>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="entrenadores.html">Entrenadores</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li>
+                    <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                        <span class="icon">🌙</span>
+                        <span class="text hidden-mobile">Modo Oscuro</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="blog">
+            <h2>Blog de Fitness</h2>
+            <div class="blog-container">
+                <aside class="sidebar">
+                    <!-- Filtro por Categorías -->
+                    <div class="filter-group">
+                        <h3>Categorías</h3>
+                        <ul class="categories filter-list">
+                            <li>
+                                <input type="radio" name="category" id="cat-all" value="all" checked>
+                                <label for="cat-all">Todas</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="category" id="cat-nutrition" value="nutrition">
+                                <label for="cat-nutrition">Nutrición</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="category" id="cat-training" value="training">
+                                <label for="cat-training">Entrenamiento</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="category" id="cat-health" value="health">
+                                <label for="cat-health">Salud</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Filtro por Tags -->
+                    <div class="filter-group">
+                        <h3>Tags</h3>
+                        <ul class="tags filter-list">
+                            <li>
+                                <input type="checkbox" name="tag" id="tag-fitness" value="fitness">
+                                <label for="tag-fitness">Fitness</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="tag" id="tag-healthy" value="healthy">
+                                <label for="tag-healthy">Saludable</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" name="tag" id="tag-exercise" value="exercise">
+                                <label for="tag-exercise">Ejercicio</label>
+                            </li>
+                            <!-- Puedes añadir más tags aquí -->
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="articles">
+                    <!-- Artículo 1 -->
+                    <article class="blog-article" data-category="nutrition" data-tags="fitness,healthy">
+                        <img src="img/dieta.jpg" alt="Persona preparando ensalada">
+                        <h3>La Importancia de una Dieta Balanceada para el Rendimiento Físico</h3>
+                        <p>Una dieta balanceada es fundamental para cualquier persona que busque mejorar su rendimiento físico. No se trata solo de comer menos, sino de comer mejor...</p>
+                        <p>Incluir una variedad de frutas, verduras, proteínas magras y granos integrales... una buena hidratación es clave...</p>
+                        <a href="https://www.centrojuliafarre.es/dietas/dieta-equilibrada/" class="btn" target="_blank" rel="noopener noreferrer">Leer más</a>
+                        <div class="comments">
+                            <h4>Comentarios</h4>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/femenino.png');"></div>
+                                <p><strong>Ana Pérez:</strong> ¡Excelente artículo! Siempre me cuesta mantener una dieta balanceada, pero estos consejos me ayudarán mucho.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/masculino.webp');"></div>
+                                <p><strong>Carlos Gómez:</strong> Muy útil la información sobre la hidratación. No le daba tanta importancia, pero ahora lo tendré en cuenta.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/femenino.png');"></div>
+                                <p><strong>Laura Rodriguez:</strong> Me encantó el artículo, muy completo. Gracias por compartirlo.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Artículo 2 -->
+                    <article class="blog-article" data-category="training" data-tags="fitness,exercise">
+                        <img src="img/corriendo.png" alt="Persona corriendo al aire libre">
+                        <h3>Entrenamiento de Alta Intensidad: Beneficios y Precauciones</h3>
+                        <p>El entrenamiento de alta intensidad (HIIT) se ha convertido en una de las formas más populares de ejercicio... Los beneficios son numerosos...</p>
+                        <p>Sin embargo, es importante tener en cuenta algunas precauciones... crucial calentar adecuadamente...</p>
+                        <a href="https://www.superprof.com.ar/blog/ventajas-entrenamiento-hiit/" class="btn" target="_blank" rel="noopener noreferrer">Leer más</a>
+                        <div class="comments">
+                            <h4>Comentarios</h4>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/masculino.webp');"></div>
+                                <p><strong>Martín López:</strong> El HIIT es mi tipo de entrenamiento favorito. ¡Me encanta la intensidad!</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/femenino.png');"></div>
+                                <p><strong>Sofía Martínez:</strong> Siempre me preocupó lesionarme con el HIIT, pero ahora entiendo mejor cómo hacerlo de forma segura.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/masculino.webp');"></div>
+                                <p><strong>Javier Torres:</strong> Muy buen artículo. Me ayudó a entender mejor el HIIT y sus beneficios.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Artículo 3 -->
+                    <article class="blog-article" data-category="health" data-tags="healthy">
+                        <img src="img/descanso.jpg" alt="Persona durmiendo plácidamente">
+                        <h3>La Importancia del Descanso para una Vida Saludable</h3>
+                        <p>El descanso es un pilar fundamental para una vida saludable, a menudo subestimado... Un buen descanso permite que el cuerpo se recupere...</p>
+                        <p>Para mejorar la calidad del descanso, es recomendable establecer una rutina regular de sueño...</p>
+                        <a href="https://www.esteveteijin.com/por-que-es-importante-tener-un-buen-descanso/" class="btn" target="_blank" rel="noopener noreferrer">Leer más</a>
+                        <div class="comments">
+                            <h4>Comentarios</h4>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/femenino.png');"></div>
+                                <p><strong>Lucía Fernández:</strong> ¡Totalmente de acuerdo! El descanso es clave para mi bienestar.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/masculino.webp');"></div>
+                                <p><strong>Diego Sánchez:</strong> Siempre me costó dormir bien, pero estos consejos me están ayudando mucho.</p>
+                            </div>
+                            <div class="comment">
+                                <div class="avatar" style="background-image: url('img/femenino.png');"></div>
+                                <p><strong>Valentina Castro:</strong> Muy buen artículo. Me hizo reflexionar sobre mis hábitos de sueño.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Puedes añadir más artículos aquí -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+    <!-- Script para cargar Nav/Footer y lógica de filtros -->
+    <script>
+        // Función para cargar contenido HTML (reutilizable)
+        function loadHTML(url, placeholderId) {
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) placeholder.innerHTML = data;
+                    else console.error(`Placeholder with ID "${placeholderId}" not found.`);
+                })
+                .catch(error => console.error(`Could not load ${url}:`, error));
+        }
+
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            Promise.all([
+                loadHTML('nav.html', 'nav-placeholder'),
+                loadHTML('footer.html', 'footer-placeholder')
+            ]).then(() => {
+                // Una vez cargados, inicializar la lógica de filtros del blog
+                initializeBlogFilters();
+                // El script de Dark Mode ya se ejecutó al cargar nav.html
+            });
+        });
+
+        // Lógica de filtros para el blog
+        function initializeBlogFilters() {
+            const categoryRadios = document.querySelectorAll('.sidebar input[name="category"]');
+            const tagCheckboxes = document.querySelectorAll('.sidebar input[name="tag"]');
+            const articles = document.querySelectorAll('.articles .blog-article');
+
+            function applyBlogFilters() {
+                let selectedCategory = 'all';
+                categoryRadios.forEach(radio => {
+                    if (radio.checked) {
+                        selectedCategory = radio.value;
+                    }
+                });
+
+                const selectedTags = [];
+                tagCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedTags.push(checkbox.value);
+                    }
+                });
+
+                articles.forEach(article => {
+                    const articleCategory = article.getAttribute('data-category');
+                    const articleTags = article.getAttribute('data-tags') ? article.getAttribute('data-tags').split(',') : [];
+
+                    // Verificar categoría
+                    const categoryMatch = (selectedCategory === 'all' || articleCategory === selectedCategory);
+
+                    // Verificar tags (debe contener TODOS los tags seleccionados)
+                    const tagsMatch = (selectedTags.length === 0 || selectedTags.every(tag => articleTags.includes(tag.trim())));
+
+                    // Mostrar u ocultar artículo
+                    if (categoryMatch && tagsMatch) {
+                        article.classList.remove('hidden');
+                    } else {
+                        article.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Añadir listeners a todos los inputs de filtro
+            categoryRadios.forEach(radio => radio.addEventListener('change', applyBlogFilters));
+            tagCheckboxes.forEach(checkbox => checkbox.addEventListener('change', applyBlogFilters));
+
+            // Aplicar filtros inicialmente
+            applyBlogFilters();
+        }
+    </script>
+    <!-- <script src="js/scripts.js"></script> --> <!-- Si tienes lógica común adicional -->
+</body>
+</html>
+

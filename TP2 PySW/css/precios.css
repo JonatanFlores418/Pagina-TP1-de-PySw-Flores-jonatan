@@ -1,0 +1,302 @@
+/* Precios Page Styles - Adaptado para Dark Mode y Mejoras Visuales */
+
+#precios {
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--color-fondo); /* Fondo general */
+    transition: background-color var(--transicion-rapida);
+}
+
+#precios h2 {
+    color: var(--color-titulos);
+    margin-bottom: 1.5rem;
+    transition: color var(--transicion-rapida);
+}
+
+/* --- Toggle Switch --- */
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5rem; /* Más espacio */
+    gap: 0.8rem; /* Espacio entre elementos */
+}
+
+.toggle {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    width: 60px; /* Un poco más ancho */
+    height: 30px; /* Un poco más alto */
+    background-color: var(--color-borde-suave); /* Gris claro por defecto */
+    display: block;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color var(--transicion-rapida);
+}
+
+.toggle-switch {
+    width: 24px; /* Switch un poco más grande */
+    height: 24px;
+    background-color: white; /* Switch blanco */
+    position: absolute;
+    top: 3px; /* Centrado vertical */
+    left: 3px; /* Posición inicial */
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color var(--transicion-rapida);
+}
+
+.toggle:checked + .toggle-label {
+    background-color: var(--color-primario); /* Color primario cuando está activo */
+}
+
+.toggle:checked + .toggle-label .toggle-switch {
+    transform: translateX(30px); /* Mover el switch a la derecha */
+}
+
+/* Estilo del texto alrededor del toggle */
+.toggle-text {
+    color: var(--color-texto);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color var(--transicion-rapida);
+}
+
+/* --- Contenedor de Tarjetas --- */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px; /* Espacio entre tarjetas */
+    padding: 10px 0; /* Padding vertical */
+}
+
+/* --- Estilo de Tarjetas --- */
+.card {
+    background-color: var(--color-card-fondo);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: var(--sombra-suave);
+    padding: 1.5rem; /* Padding interno */
+    width: clamp(280px, 30%, 350px); /* Ancho responsive */
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Alinear texto a la izquierda */
+    transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida),
+                background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: var(--sombra-hover);
+}
+
+/* Tarjeta Destacada */
+.card.highlighted {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 15px rgba(var(--color-primario-rgb, 0, 119, 204), 0.5); /* Sombra de color primario */
+    position: relative; /* Para el pseudo-elemento */
+    overflow: hidden; /* Para contener el pseudo-elemento */
+}
+/* Añadir variable RGB para la sombra */
+:root { --color-primario-rgb: 0, 119, 204; }
+body.dark-mode { --color-primario-rgb: 52, 152, 219; }
+
+/* Opcional: Cinta "Más Popular" */
+.card.highlighted::before {
+    content: "Más Popular";
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background-color: var(--color-primario);
+    color: var(--color-boton-texto);
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+.card h3 {
+    color: var(--color-titulos);
+    margin: 0 0 1rem 0; /* Margen inferior */
+    font-size: 1.4rem;
+    text-align: center;
+    transition: color var(--transicion-rapida);
+}
+
+.card .price {
+    color: var(--color-primario);
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    transition: color var(--transicion-rapida);
+}
+.card .price .period {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: var(--color-texto);
+    transition: color var(--transicion-rapida);
+}
+.card .price .discount {
+    display: block; /* Mostrar en nueva línea */
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--color-texto); /* O un color de descuento específico */
+    opacity: 0.8;
+    margin-top: 0.3rem;
+    transition: color var(--transicion-rapida);
+}
+body.dark-mode .card .price .discount {
+    color: #a0a0a0; /* Gris más claro en modo oscuro */
+}
+
+
+.card ul {
+    list-style: none; /* Quitar viñetas por defecto */
+    padding: 0;
+    margin: 0 0 1.5rem 0; /* Margen inferior */
+    flex-grow: 1; /* Hacer que la lista ocupe el espacio restante */
+}
+
+.card li {
+    color: var(--color-texto);
+    margin-bottom: 0.7rem; /* Espacio entre beneficios */
+    padding-left: 1.5rem; /* Espacio para el icono */
+    position: relative;
+    font-size: 0.95rem;
+    transition: color var(--transicion-rapida);
+}
+/* Icono de check antes de cada beneficio */
+.card li::before {
+    content: '✔'; /* Icono de check */
+    position: absolute;
+    left: 0;
+    color: var(--color-primario); /* Color del icono */
+    font-weight: bold;
+    transition: color var(--transicion-rapida);
+}
+
+/* Botón dentro de la tarjeta */
+.card .btn-card {
+    margin-top: auto; /* Empujar el botón al final */
+    text-align: center;
+    width: 90%; /* Ocupar todo el ancho */
+    padding: 12px 20px; /* Padding más generoso */
+}
+
+
+/* --- Tabla Comparativa --- */
+.table-title {
+    margin-top: 3rem; /* Espacio antes de la tabla */
+    margin-bottom: 1rem;
+    color: var(--color-titulos);
+    font-size: 1.5rem;
+    transition: color var(--transicion-rapida);
+}
+
+.table-wrapper {
+    overflow-x: auto; /* Permitir scroll horizontal en pantallas pequeñas */
+    margin-bottom: 2rem; /* Espacio debajo de la tabla */
+}
+
+#tabla-precios {
+    width: 100%;
+    max-width: 1500px; /* Ancho máximo para la tabla */
+    margin: 0 auto; /* Centrar la tabla */
+    border-collapse: collapse;
+    background-color: var(--color-card-fondo);
+    color: var(--color-texto);
+    box-shadow: var(--sombra-suave);
+    border-radius: 8px;
+    overflow: hidden; /* Para que el borde redondeado funcione */
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+#tabla-precios th,
+#tabla-precios td {
+    border: 2px solid var(--color-borde-suave);
+    padding: 0.8rem 1rem;
+    text-align: center;
+    transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+#tabla-precios th {
+    background-color: var(--color-header-fondo); /* Usar color del header o similar */
+    color: var(--color-header-texto);
+    font-weight: bold;
+}
+
+#tabla-precios tbody tr:nth-child(even) {
+    background-color: rgba(var(--color-primario-rgb, 0, 119, 204), 0.05); /* Fondo muy sutil para filas pares */
+}
+body.dark-mode #tabla-precios tbody tr:nth-child(even) {
+    background-color: rgba(var(--color-primario-rgb, 52, 152, 219), 0.1);
+}
+
+#tabla-precios tbody tr:hover {
+    background-color: rgba(var(--color-primario-rgb, 0, 119, 204), 0.15);
+}
+body.dark-mode #tabla-precios tbody tr:hover {
+    background-color: rgba(var(--color-primario-rgb, 52, 152, 219), 0.25);
+}
+
+
+/* Tooltip en la tabla */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555; /* Fondo oscuro para tooltip */
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Posicionar encima del texto */
+    left: 50%;
+    margin-left: -100px; /* Centrar el tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+body.dark-mode .tooltip .tooltiptext {
+    background-color: #eee; /* Fondo claro en modo oscuro */
+    color: #333;
+}
+
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- Botón Empezar --- */
+.btn-empezar {
+    /* Reutilizar estilos de .btn definidos en styles.css */
+    display: inline-block; /* Asegurar que sea bloque en línea */
+    margin-top: 2rem; /* Espacio sobre el botón */
+    padding: 12px 25px; /* Padding */
+    font-size: 1.1rem; /* Tamaño de fuente */
+    /* Hereda colores y transiciones de .btn */
+}
+
+/* --- Clase Hidden --- */
+.hidden {
+    display: none !important; /* Asegurar que oculte, incluso en tabla */
+}

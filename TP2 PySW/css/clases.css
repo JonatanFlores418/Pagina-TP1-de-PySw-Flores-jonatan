@@ -1,0 +1,222 @@
+/* En styles.css o clases.css */
+
+/* --- Filtros --- */
+#filtros {
+  background-color: var(--color-card-fondo, #f9f9f9); /* Usa variable con fallback */
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-borde-suave, #eee);
+  transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+#filtros h2 {
+  color: var(--color-titulos);
+  margin-bottom: 1rem;
+  text-align: center;
+  transition: color var(--transicion-rapida);
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.filter-container label {
+  color: var(--color-texto);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-borde-suave, #ccc);
+  border-radius: 20px;
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.filter-container input[type="checkbox"] {
+  display: none; /* Ocultar checkbox original */
+}
+
+.filter-container input[type="checkbox"]:checked + label {
+  background-color: var(--color-primario);
+  color: var(--color-boton-texto);
+  border-color: var(--color-primario);
+}
+.filter-container label:hover {
+  background-color: var(--color-primario-hover);
+  color: var(--color-boton-texto);
+  border-color: var(--color-primario-hover);
+}
+
+
+/* --- Galería --- */
+#galeria-clases h2 {
+  color: var(--color-titulos);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: color var(--transicion-rapida);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: var(--sombra-suave);
+  transition: transform var(--transicion-corta), box-shadow var(--transicion-corta);
+  background-color: var(--color-card-fondo); /* Fondo por si la imagen no carga */
+}
+
+.grid-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--sombra-hover);
+}
+
+.grid-item img {
+  display: block;
+  width: 100%;
+  height: 600px; /* Ajusta según necesites */
+  object-fit: cover;
+  transition: transform var(--transicion-rapida);
+}
+
+.grid-item:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  opacity: 1;
+  transition: opacity var(--transicion-rapida);
+}
+
+/* Opcional: Ocultar overlay hasta hover */
+/* .grid-item .overlay { opacity: 0; } */
+/* .grid-item:hover .overlay { opacity: 1; } */
+
+.overlay h3 {
+  margin: 0 0 0.5rem 0;
+  color: white; /* Forzar blanco sobre overlay oscuro */
+  font-size: 1.2rem;
+}
+
+.overlay p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #eee; /* Gris claro sobre overlay */
+}
+
+
+/* --- Tabla de Horarios --- */
+#horarios {
+  margin: 3rem 0;
+  overflow-x: auto; /* Para responsividad en tablas */
+}
+#horarios h2 {
+  color: var(--color-titulos);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: color var(--transicion-rapida);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-card-fondo);
+  color: var(--color-texto);
+  box-shadow: var(--sombra-suave);
+  border-radius: 8px;
+  overflow: hidden; /* Para que el borde redondeado afecte */
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+th, td {
+  border: 1px solid var(--color-borde-suave);
+  padding: 0.8rem 1rem;
+  text-align: center;
+  transition: border-color var(--transicion-rapida);
+}
+
+thead {
+  background-color: var(--color-header-fondo); /* O un color específico para header de tabla */
+  color: var(--color-header-texto);
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-fondo); /* Fondo ligeramente diferente para filas pares */
+  transition: background-color var(--transicion-rapida);
+}
+/* En modo oscuro, quizás quieras que las filas pares sean un poco más claras que las impares */
+body.dark-mode tbody tr:nth-child(even) {
+ background-color: #2a2a2a; /* Ejemplo */
+}
+
+tbody tr:hover {
+  background-color: var(--color-primario-hover); /* O un color de hover más sutil */
+  color: var(--color-boton-texto); /* Texto claro sobre hover */
+}
+body.dark-mode tbody tr:hover {
+  background-color: var(--color-primario);
+  color: var(--color-boton-texto);
+}
+
+
+/* --- Secciones de Información --- */
+.class-info {
+  background-color: var(--color-card-fondo);
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  border: 1px solid var(--color-borde-suave);
+  transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+.class-info h2 {
+  color: var(--color-titulos);
+  margin-bottom: 1rem;
+  transition: color var(--transicion-rapida);
+}
+.class-info h3 {
+  color: var(--color-titulos); /* O --color-texto si prefieres */
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  transition: color var(--transicion-rapida);
+}
+
+.class-info p, .class-info li {
+  color: var(--color-texto);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  transition: color var(--transicion-rapida);
+}
+
+.class-info ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.class-info a {
+  color: var(--color-primario);
+  font-weight: bold;
+}
+.class-info a:hover {
+  color: var(--color-primario-hover);
+}
+

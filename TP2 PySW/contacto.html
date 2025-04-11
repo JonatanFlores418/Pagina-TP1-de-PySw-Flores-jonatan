@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio - Contacto</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Asegúrate que este sea el CSS actualizado -->
+    <link rel="stylesheet" href="css/contacto.css">
+</head>
+<body>
+    <header>
+      <!-- nav.html (Corregido y Mejorado) -->
+<nav>
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clases.html">Clases</a>
+            <ul>
+                <li><a href="#">Musculación</a></li>
+                <li><a href="#">CrossFit</a></li>
+                <li><a href="#">Yoga</a></li>
+                <li><a href="#">Spinning</a></li>
+            </ul>
+        </li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li>
+            <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                <span class="icon">🌙</span>
+                <span class="text hidden-mobile">Modo Oscuro</span>
+            </button>
+        </li>
+    </ul>
+</nav>
+
+    </header>
+    <main>
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <p class="intro-text">¿Tienes alguna pregunta o quieres saber más sobre nuestros planes? ¡Déjanos tu mensaje!</p>
+            <form id="contacto-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                    <span class="error-message" id="error-nombre"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="tu.correo@ejemplo.com">
+                    <span class="error-message" id="error-email"></span>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu consulta aquí..." rows="5"></textarea>
+                    <span class="error-message" id="error-mensaje"></span>
+                </div>
+                <button type="submit" class="btn btn-submit">
+                    <span class="btn-text">Enviar Mensaje</span>
+                    <span class="spinner hidden"></span> <!-- Spinner dentro del botón -->
+                </button>
+            </form>
+
+            <!-- Modal de Confirmación -->
+            <div id="modal-confirmacion" class="modal hidden">
+                <div class="modal-content">
+                    <span class="modal-icon">✓</span> <!-- Icono de éxito -->
+                    <h3>¡Solicitud Enviada!</h3>
+                    <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+                    <button id="cerrar-modal" class="btn">Cerrar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+    <!-- Script para cargar Nav/Footer y lógica del formulario -->
+    <script>
+        // Función para cargar contenido HTML (reutilizable)
+        function loadHTML(url, placeholderId) {
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) {
+                         placeholder.innerHTML = data;
+                         // Si se cargó el nav, el script de dark mode dentro de nav.html se ejecutará.
+                         // Si necesitas ejecutar algo *después* de que el script de dark mode se haya ejecutado,
+                         // podrías necesitar un pequeño retraso o un evento personalizado.
+                    } else {
+                        console.error(`Placeholder with ID "${placeholderId}" not found.`);
+                    }
+                })
+                .catch(error => console.error(`Could not load ${url}:`, error));
+        }
+
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            Promise.all([
+                loadHTML('nav.html', 'nav-placeholder'),
+                loadHTML('footer.html', 'footer-placeholder')
+            ]).then(() => {
+                // Una vez cargados Nav y Footer, inicializar la lógica del formulario
+                // Asegurarse de que el botón darkModeToggle (cargado con nav.html) ya exista
+                // antes de intentar añadirle listeners si fuera necesario aquí (aunque ya están en nav.html)
+                initializeContactForm();
+            }).catch(error => {
+                console.error("Error loading nav or footer:", error);
+                // Aún así intentar inicializar el formulario si falla la carga del nav/footer
+                initializeContactForm();
+            });
+        });
+
+        // Lógica del formulario de contacto
+        function initializeContactForm() {
+            const form = document.getElementById('contacto-form');
+            // Asegurarse de que el formulario exista antes de continuar
+            if (!form) {
+                console.error("Formulario de contacto no encontrado.");
+                return;
+            }
+
+            const modal = document.getElementById('modal-confirmacion');
+            const closeModalButton = document.getElementById('cerrar-modal');
+            const submitButton = form.querySelector('.btn-submit');
+            const buttonText = submitButton.querySelector('.btn-text');
+            const spinner = submitButton.querySelector('.spinner');
+
+            // Verificar que todos los elementos necesarios existan
+            if (!modal || !closeModalButton || !submitButton || !buttonText || !spinner) {
+                console.error("Uno o más elementos del formulario/modal no se encontraron.");
+                return;
+            }
+
+            // Referencias a campos y mensajes de error
+            const nombreInput = document.getElementById('nombre');
+            const emailInput = document.getElementById('email');
+            const mensajeInput = document.getElementById('mensaje');
+            const errorNombre = document.getElementById('error-nombre');
+            const errorEmail = document.getElementById('error-email');
+            const errorMensaje = document.getElementById('error-mensaje');
+
+            // Función para mostrar el modal
+            function showModal() {
+                modal.classList.remove('hidden');
+                closeModalButton.focus();
+                console.log("Modal mostrado"); // Para depuración
+            }
+
+            // Función para ocultar el modal
+            function hideModal() {
+                modal.classList.add('hidden');
+            }
+
+            // Función simple de validación
+            function validateForm() {
+                let isValid = true;
+                // Resetear errores
+                [errorNombre, errorEmail, errorMensaje].forEach(el => el.textContent = '');
+                [nombreInput, emailInput, mensajeInput].forEach(el => el.classList.remove('invalid'));
+
+                if (nombreInput.value.trim() === '') {
+                    errorNombre.textContent = 'El nombre es obligatorio.';
+                    nombreInput.classList.add('invalid');
+                    isValid = false;
+                }
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(emailInput.value.trim())) {
+                    errorEmail.textContent = 'Ingresa un correo electrónico válido.';
+                    emailInput.classList.add('invalid');
+                    isValid = false;
+                }
+                if (mensajeInput.value.trim().length < 10) {
+                    errorMensaje.textContent = 'El mensaje debe tener al menos 10 caracteres.';
+                    mensajeInput.classList.add('invalid');
+                    isValid = false;
+                }
+                return isValid;
+            }
+
+            // Event listener para el envío del formulario
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                if (validateForm()) {
+                    buttonText.classList.add('hidden');
+                    spinner.classList.remove('hidden');
+                    submitButton.disabled = true;
+
+                    console.log('Simulando envío...');
+                    setTimeout(() => {
+                        spinner.classList.add('hidden');
+                        buttonText.classList.remove('hidden');
+                        submitButton.disabled = false;
+
+                        console.log('Mostrando modal...');
+                        showModal(); // Llamada para mostrar el modal
+                        form.reset(); // Limpiar formulario
+                    }, 1500);
+                } else {
+                    console.log('Formulario inválido');
+                    const firstError = form.querySelector('.invalid');
+                    if (firstError) {
+                        firstError.focus();
+                    }
+                }
+            });
+
+            // Listeners para cerrar el modal
+            closeModalButton.addEventListener('click', hideModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    hideModal();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    hideModal();
+                }
+            });
+        } // Fin de initializeContactForm
+    </script>
+    <!-- <script src="js/scripts.js"></script> -->
+</body>
+</html>

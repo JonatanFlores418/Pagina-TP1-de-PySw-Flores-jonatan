@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio - Clases</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/clases.css">
+    <style>
+        /* Estilo básico para ocultar/mostrar elementos filtrados */
+        .grid-item-link.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Placeholder para cargar la navegación -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clases.html">Clases</a>
+                    <ul>
+                        <li><a href="#">Musculación</a></li>
+                        <li><a href="#">CrossFit</a></li>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="entrenadores.html">Entrenadores</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li>
+                    <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                        <span class="icon">🌙</span>
+                        <span class="text hidden-mobile">Modo Oscuro</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section id="filtros">
+            <h2>Filtros</h2>
+            <div class="filter-container">
+                <input type="checkbox" id="musculacion-filter" name="categoria" value="musculacion">
+                <label for="musculacion-filter">Musculación</label>
+
+                <input type="checkbox" id="crossfit-filter" name="categoria" value="crossfit">
+                <label for="crossfit-filter">CrossFit</label>
+
+                <input type="checkbox" id="yoga-filter" name="categoria" value="yoga">
+                <label for="yoga-filter">Yoga</label>
+
+                <input type="checkbox" id="spinning-filter" name="categoria" value="spinning">
+                <label for="spinning-filter">Spinning</label>
+            </div>
+        </section>
+
+        <section id="galeria-clases">
+            <h2>Nuestras Clases</h2>
+            <div class="grid-container">
+                <!-- Añadido data-category para el filtro JS -->
+                <a href="#musculacion-info" class="grid-item-link" data-category="musculacion">
+                    <div class="grid-item">
+                        <img src="img/musculacion.jpg" alt="Musculación">
+                        <div class="overlay">
+                            <h3>Musculación</h3>
+                            <p>Desarrolla tu fuerza.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="#crossfit-info" class="grid-item-link" data-category="crossfit">
+                    <div class="grid-item">
+                        <img src="img/crossfit.jpg" alt="CrossFit">
+                        <div class="overlay">
+                            <h3>CrossFit</h3>
+                            <p>Entrenamiento de alta intensidad.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="#yoga-info" class="grid-item-link" data-category="yoga">
+                    <div class="grid-item">
+                        <img src="img/yoga.jpg" alt="Yoga">
+                        <div class="overlay">
+                            <h3>Yoga</h3>
+                            <p>Equilibrio y flexibilidad.</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="#spinning-info" class="grid-item-link" data-category="spinning">
+                    <div class="grid-item">
+                        <img src="img/spinning.jpg" alt="Spinning">
+                        <div class="overlay">
+                            <h3>Spinning</h3>
+                            <p>Cardio y resistencia.</p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Puedes añadir más clases aquí con su data-category -->
+            </div>
+        </section>
+
+        <section id="horarios">
+            <h2>Horarios Semanales</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Clase</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Musculación</td>
+                        <td>8:00 - 9:00</td>
+                        <td>8:00 - 9:00</td>
+                        <td>8:00 - 9:00</td>
+                        <td>8:00 - 9:00</td>
+                        <td>8:00 - 9:00</td>
+                        <td>9:00 - 10:00</td>
+                    </tr>
+                    <tr>
+                        <td>CrossFit</td>
+                        <td>9:00 - 10:00</td>
+                        <td>9:00 - 10:00</td>
+                        <td>9:00 - 10:00</td>
+                        <td>9:00 - 10:00</td>
+                        <td>9:00 - 10:00</td>
+                        <td>10:00 - 11:00</td>
+                    </tr>
+                    <tr>
+                        <td>Yoga</td>
+                        <td>10:00 - 11:00</td>
+                        <td>10:00 - 11:00</td>
+                        <td>10:00 - 11:00</td>
+                        <td>10:00 - 11:00</td>
+                        <td>10:00 - 11:00</td>
+                        <td>11:00 - 12:00</td>
+                    </tr>
+                    <tr>
+                        <td>Spinning</td>
+                        <td>11:00 - 12:00</td>
+                        <td>11:00 - 12:00</td>
+                        <td>11:00 - 12:00</td>
+                        <td>11:00 - 12:00</td>
+                        <td>11:00 - 12:00</td>
+                        <td>12:00 - 13:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Secciones de información de clases (sin cambios) -->
+        <section id="musculacion-info" class="class-info">
+            <h2>Musculación</h2>
+            <p>
+                La musculación es una disciplina fundamental para quienes buscan desarrollar fuerza, aumentar la masa muscular y mejorar la composición corporal. 
+                En nuestras clases, te guiaremos a través de una variedad de ejercicios con pesas, máquinas y peso corporal, adaptados a tu nivel y objetivos.
+            </p>
+            <p>
+                Nuestros entrenadores te enseñarán la técnica correcta para cada ejercicio, asegurando que entrenes de forma segura y efectiva. 
+                Además, te brindaremos asesoramiento nutricional para complementar tu entrenamiento y maximizar tus resultados.
+            </p>
+            <h3>Beneficios:</h3>
+            <ul>
+                <li>Aumento de la fuerza y la masa muscular.</li>
+                <li>Mejora de la postura y la estabilidad.</li>
+                <li>Aumento del metabolismo y quema de calorías.</li>
+                <li>Reducción del riesgo de lesiones.</li>
+                <li>Mejora de la densidad ósea.</li>
+            </ul>
+            <h3>Entrenador:</h3>
+            <a href="entrenadores.html">Axel Sonso</a>
+        </section>
+        <section id="crossfit-info" class="class-info">
+            <h2>CrossFit</h2>
+            <p>
+                CrossFit es un programa de entrenamiento de alta intensidad que combina ejercicios de fuerza, resistencia, cardio y gimnasia. 
+                Cada clase es un desafío nuevo, con WODs (Workout of the Day) que varían diariamente para mantener tu cuerpo y mente en constante evolución.
+            </p>
+            <p>
+                Nuestros entrenadores certificados te guiarán a través de cada WOD, adaptando los ejercicios a tu nivel y asegurando que mantengas la técnica correcta. 
+                Además, te motivarán a superar tus límites y alcanzar tu máximo potencial.
+            </p>
+            <h3>Beneficios:</h3>
+            <ul>
+                <li>Mejora de la resistencia cardiovascular y muscular.</li>
+                <li>Aumento de la fuerza y la potencia.</li>
+                <li>Mejora de la coordinación y la agilidad.</li>
+                <li>Quema de calorías y pérdida de peso.</li>
+                <li>Desarrollo de la capacidad de superación.</li>
+            </ul>
+            <h3>Entrenador:</h3>
+            <a href="entrenadores.html">Malena Bulos</a>
+        </section>
+
+        <section id="yoga-info" class="class-info">
+            <h2>Yoga</h2>
+            <p>
+                El yoga es una práctica milenaria que combina posturas físicas (asanas), técnicas de respiración (pranayama) y meditación. 
+                En nuestras clases, te guiaremos a través de diferentes estilos de yoga, adaptados a todos los niveles, desde principiantes hasta avanzados.
+            </p>
+            <p>
+                Nuestros instructores te enseñarán a conectar con tu cuerpo y tu respiración, mejorando tu flexibilidad, fuerza, equilibrio y bienestar general. 
+                Además, te brindarán herramientas para reducir el estrés y la ansiedad, y mejorar tu concentración y claridad mental.
+            </p>
+            <h3>Beneficios:</h3>
+            <ul>
+                <li>Mejora de la flexibilidad y la movilidad.</li>
+                <li>Reducción del estrés y la ansiedad.</li>
+                <li>Mejora de la concentración y la claridad mental.</li>
+                <li>Fortalecimiento del cuerpo y mejora de la postura.</li>
+                <li>Mejora del equilibrio y la coordinación.</li>
+            </ul>
+            <h3>Entrenador:</h3>
+            <a href="entrenadores.html">Agustina Subiabre</a>
+        </section>
+
+        <section id="spinning-info" class="class-info">
+            <h2>Spinning</h2>
+            <p>
+                Spinning es una clase de ciclismo indoor de alta intensidad que se realiza en bicicletas estáticas. 
+                En nuestras clases, simularás diferentes terrenos y ritmos, trabajando la resistencia cardiovascular y la fuerza en las piernas.
+            </p>
+            <p>
+                Nuestros instructores te motivarán a dar lo mejor de ti en cada clase, ajustando la intensidad y la resistencia de la bicicleta a tu nivel. 
+                Además, te guiarán a través de diferentes técnicas de pedaleo y posiciones para maximizar tu entrenamiento.
+            </p>
+            <h3>Beneficios:</h3>
+            <ul>
+                <li>Mejora de la resistencia cardiovascular.</li>
+                <li>Quema de calorías y pérdida de peso.</li>
+                <li>Fortalecimiento de las piernas y los glúteos.</li>
+                <li>Reducción del estrés.</li>
+                <li>Mejora de la coordinación y el ritmo.</li>
+            </ul>
+            <h3>Entrenador:</h3>
+            <a href="entrenadores.html">Tomas Mazza</a>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+    <!-- Script para cargar Nav y Footer -->
+    <script>
+        // Función para cargar contenido HTML
+        function loadHTML(url, placeholderId) {
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) {
+                        placeholder.innerHTML = data;
+                        // Si se cargó el nav, inicializar scripts asociados (como dark mode)
+                        if (placeholderId === 'nav-placeholder') {
+                            // El script de dark mode está dentro de nav.html y se ejecutará
+                            // automáticamente al insertarse el HTML.
+                            // Si tuvieras otros scripts que dependen del nav, los inicializas aquí.
+                        }
+                    } else {
+                        console.error(`Placeholder with ID "${placeholderId}" not found.`);
+                    }
+                })
+                .catch(error => {
+                    console.error(`Could not load ${url}:`, error);
+                });
+        }
+
+        // Cargar Nav y Footer al cargar el DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            Promise.all([
+                loadHTML('nav.html', 'nav-placeholder'),
+                loadHTML('footer.html', 'footer-placeholder')
+            ]).then(() => {
+                // Una vez cargado el Nav y Footer, inicializar la lógica de filtros
+                initializeFilters();
+            });
+        });
+
+        // --- Lógica de Filtros ---
+        function initializeFilters() {
+            const filterCheckboxes = document.querySelectorAll('#filtros input[name="categoria"]');
+            const galleryItems = document.querySelectorAll('#galeria-clases .grid-item-link'); // Seleccionamos los enlaces
+
+            if (filterCheckboxes.length === 0 || galleryItems.length === 0) {
+                console.warn("No se encontraron checkboxes de filtro o items de galería.");
+                return;
+            }
+
+            function applyFilters() {
+                const selectedCategories = [];
+                filterCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedCategories.push(checkbox.value);
+                    }
+                });
+
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    // Mostrar si no hay filtros seleccionados O si la categoría del item está en los seleccionados
+                    if (selectedCategories.length === 0 || selectedCategories.includes(itemCategory)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Añadir listener a cada checkbox
+            filterCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+
+            // Aplicar filtros inicialmente (por si acaso)
+            applyFilters();
+        }
+    </script>
+    <!-- Enlace a tu script general si tienes más lógica común -->
+    <!-- <script src="js/scripts.js"></script> -->
+</body>
+</html>

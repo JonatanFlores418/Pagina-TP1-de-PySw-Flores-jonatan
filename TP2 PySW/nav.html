@@ -1,0 +1,83 @@
+<!-- nav.html (Corregido y Mejorado) -->
+<nav>
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="clases.html">Clases</a>
+            <ul>
+                <li><a href="#">Musculación</a></li>
+                <li><a href="#">CrossFit</a></li>
+                <li><a href="#">Yoga</a></li>
+                <li><a href="#">Spinning</a></li>
+            </ul>
+        </li>
+        <li><a href="entrenadores.html">Entrenadores</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li>
+            <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                <span class="icon">🌙</span>
+                <span class="text hidden-mobile">Modo Oscuro</span>
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    // --- Lógica Dark Mode ---
+    // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+    // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+
+    const toggleButton = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const buttonIcon = toggleButton.querySelector('.icon');
+    const buttonText = toggleButton.querySelector('.text'); // Opcional
+
+    if (!toggleButton) {
+        console.error("Botón Dark Mode no encontrado.");
+    } else {
+        // Función para aplicar tema y actualizar botón/storage
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                if (buttonIcon) buttonIcon.textContent = '☀️';
+                if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                localStorage.setItem('theme', 'dark');
+                toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+            } else {
+                body.classList.remove('dark-mode');
+                if (buttonIcon) buttonIcon.textContent = '🌙';
+                if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                localStorage.setItem('theme', 'light');
+                toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+            }
+        };
+
+        // Comprobar preferencia guardada o del sistema al cargar
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        // Aplicar tema inicial
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else if (prefersDark) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light'); // Default light
+        }
+
+        // Event listener para el clic
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+
+         // (Opcional) Escuchar cambios en la preferencia del sistema
+         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            // Solo cambia si el usuario no ha elegido explícitamente un tema
+            if (!localStorage.getItem('theme')) {
+                applyTheme(event.matches ? 'dark' : 'light');
+            }
+        });
+    }
+</script>

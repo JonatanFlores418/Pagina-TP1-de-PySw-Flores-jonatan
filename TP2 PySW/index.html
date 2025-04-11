@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio - Página Principal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clases.html">Clases</a>
+                    <ul>
+                        <li><a href="#Musculacion">Musculación</a></li>
+                        <li><a href="#">CrossFit</a></li>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="entrenadores.html">Entrenadores</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li>
+                    <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                        <span class="icon">🌙</span>
+                        <span class="text hidden-mobile">Modo Oscuro</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <section id="hero">
+            <video autoplay muted loop>
+                <source src="img/hero-video.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+            <div class="hero-overlay">
+                <h1>¡Alcanza tus metas!</h1>
+                <p>Entrena con los mejores.</p>
+                <a href="clases.html" class="btn">Descubre nuestras clases</a>
+            </div>
+        </section>
+
+        <section id="clases-destacadas">
+            <h2>Clases Destacadas</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="img/musculacion.jpg" alt="Musculación">
+                    <h3>Musculación</h3>
+                    <p>Descripción de la clase.</p>
+                    <a href="clases.html" class="btn">Ver más</a>
+                </div>
+                <div class="card">
+                    <img src="img/crossfit.jpg" alt="CrossFit">
+                    <h3>CrossFit</h3>
+                    <p>Descripción de la clase.</p>
+                    <a href="clases.html" class="btn">Ver más</a>
+                </div>
+                <div class="card">
+                    <img src="img/yoga.jpg" alt="Yoga">
+                    <h3>Yoga</h3>
+                    <p>Descripción de la clase.</p>
+                    <a href="clases.html" class="btn">Ver más</a>
+                </div>
+                <div class="card">
+                    <img src="img/spinning.jpg" alt="Spinning">
+                    <h3>Spinning</h3>
+                    <p>Descripción de la clase.</p>
+                    <a href="clases.html" class="btn">Ver más</a>
+                </div>
+            </div>
+        </section>
+        <section id="counter">
+            <div class="counter-container">
+                <span class="counter-number" data-target="500">0</span>
+                <p>Miembros actuales</p>
+            </div>
+            <section class="testimonios">
+                <h2>Testimonios</h2>
+                <div class="carousel-container">
+                  <div class="carousel-slide">
+                    <div class="testimonio-card">
+                      <p>"¡Este gimnasio me ha cambiado la vida! Estoy más fuerte y más sano que nunca."</p>
+                      <h4>- Javier Mendez</h4>
+                    </div>
+                    <div class="testimonio-card">
+                      <p>"Los entrenadores son excelentes y el ambiente es súper motivador."</p>
+                      <h4>- Laura Gómez</h4>
+                    </div>
+                    <div class="testimonio-card">
+                      <p>"Cada clase me deja con energía para todo el día."</p>
+                      <h4>- Tomás Ruiz</h4>
+                    </div>
+                  </div>
+                  <button class="prev">&#10094;</button>
+                  <button class="next">&#10095;</button>
+                </div>
+              </section>
+              <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016771883886!2d-58.38155902438965!3d-34.60373897290198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccac59227960b%3A0x9e5929470653d6d4!2sObelisco!5e0!3m2!1ses-419!2sar!4v1699890031429!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+              
+          
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+
+    <script>
+  const slide = document.querySelector('.carousel-slide');
+const cards = document.querySelectorAll('.testimonio-card');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let currentIndex = 0;
+
+// Ancho total de una tarjeta + espacio entre ellas
+const cardWidth = cards[0].offsetWidth + 120; // 30 = gap
+
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < cards.length - 1) {
+    currentIndex++;
+    slide.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    slide.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
+  }
+});
+
+
+        
+// Animated Counter
+const counterNumber = document.querySelector('.counter-number');
+if (counterNumber) {
+    const target = parseInt(counterNumber.getAttribute('data-target'));
+    let count = 0;
+    const increment = target / 200; // Adjust the divisor for speed
+
+    const updateCounter = () => {
+        if (count < target) {
+            count += increment;
+            counterNumber.textContent = Math.ceil(count);
+            setTimeout(updateCounter, 10); // Adjust the timeout for speed
+        } else {
+            counterNumber.textContent = target;
+        }
+    };
+
+    updateCounter();
+}
+
+// Current Year in Footer
+const yearSpan = document.getElementById('year');
+if (yearSpan) {
+    const currentYear = new Date().getFullYear();
+    yearSpan.textContent = currentYear;
+}
+
+
+        fetch('nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('nav-placeholder').innerHTML = data;
+            });
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

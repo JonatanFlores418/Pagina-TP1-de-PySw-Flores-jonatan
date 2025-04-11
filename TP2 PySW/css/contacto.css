@@ -1,0 +1,231 @@
+/* Contacto Page Styles - Adaptado para Dark Mode y Mejoras Visuales */
+
+#contacto {
+    padding: 2rem;
+    max-width: 700px; /* Limitar ancho para mejor legibilidad del formulario */
+    margin: 2rem auto; /* Centrar la sección */
+    background-color: var(--color-card-fondo); /* Fondo tipo tarjeta */
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--color-borde-suave);
+    transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+#contacto h2 {
+    color: var(--color-titulos);
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: color var(--transicion-rapida);
+}
+
+#contacto .intro-text {
+    color: var(--color-texto);
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    transition: color var(--transicion-rapida);
+}
+
+/* --- Formulario --- */
+#contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espacio entre grupos de formulario */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--color-texto);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color var(--transicion-rapida);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    padding: 12px 15px; /* Padding interno */
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 8px;
+    background-color: var(--color-fondo); /* Fondo que cambia con el tema */
+    color: var(--color-texto);
+    font-family: inherit; /* Usar la fuente del body */
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+    transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida), color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+.form-group textarea {
+    resize: vertical; /* Permitir redimensionar solo verticalmente */
+    min-height: 120px; /* Altura mínima */
+}
+
+/* Estilo de foco */
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(var(--color-primario-rgb, 0, 119, 204), 0.2); /* Resplandor al enfocar */
+}
+
+/* Estilo para campos inválidos */
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: var(--color-error, #e74c3c); /* Rojo para error */
+}
+.form-group input.invalid:focus,
+.form-group textarea.invalid:focus {
+     box-shadow: 0 0 0 3px rgba(var(--color-error-rgb, 231, 76, 60), 0.2);
+}
+
+/* Mensajes de error */
+.error-message {
+    color: var(--color-error, #e74c3c);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    min-height: 1.2em; /* Reservar espacio para que no salte el layout */
+    transition: color var(--transicion-rapida);
+}
+/* Añadir variables de error a :root y body.dark-mode si no existen */
+:root { --color-error: #e74c3c; --color-error-rgb: 231, 76, 60; }
+body.dark-mode { --color-error: #ff6b6b; --color-error-rgb: 255, 107, 107; }
+
+
+/* --- Botón de Envío con Spinner --- */
+.btn-submit {
+    /* Hereda estilos de .btn */
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    position: relative; /* Para posicionar el spinner */
+    display: flex; /* Para alinear texto y spinner */
+    justify-content: center;
+    align-items: center;
+    min-height: 48px; /* Altura mínima para consistencia */
+}
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-submit .btn-text.hidden {
+    visibility: hidden; /* Ocultar texto cuando el spinner está activo */
+}
+
+.spinner {
+    border: 3px solid rgba(var(--color-boton-texto-rgb, 255, 255, 255), 0.3); /* Borde claro */
+    border-top-color: var(--color-boton-texto); /* Color principal del spinner */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    position: absolute; /* Posicionar en el centro del botón */
+    top: 50%;
+    left: 50%;
+    margin-top: -10px; /* Mitad de la altura */
+    margin-left: -10px; /* Mitad del ancho */
+}
+/* Añadir variable RGB para texto de botón */
+:root { --color-boton-texto-rgb: 255, 255, 255; }
+/* No necesita cambio en dark mode si el texto sigue siendo blanco */
+
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* --- Modal de Confirmación --- */
+.modal {
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 1000; /* Por encima de todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-content {
+    background-color: var(--color-card-fondo);
+    padding: 2.5rem; /* Más padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px; /* Ancho máximo */
+    width: 90%;
+    border-top: 5px solid var(--color-exito, #2ecc71); /* Borde superior de éxito */
+    transform: scale(1);
+    transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), transform 0.3s ease;
+}
+/* Animación al aparecer */
+.modal:not(.hidden) .modal-content {
+    animation: modal-appear 0.4s ease-out;
+}
+
+@keyframes modal-appear {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+
+/* Añadir variable de éxito */
+:root { --color-exito: #2ecc71; }
+body.dark-mode { --color-exito: #58d68d; }
+
+
+.modal-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    background-color: var(--color-exito);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.modal-content h3 {
+    color: var(--color-titulos);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    transition: color var(--transicion-rapida);
+}
+
+.modal-content p {
+    color: var(--color-texto);
+    margin: 0 0 1.5rem 0; /* Más espacio antes del botón */
+    line-height: 1.6;
+    transition: color var(--transicion-rapida);
+}
+
+.modal-content .btn {
+    /* Hereda estilos de .btn */
+    padding: 10px 20px;
+}
+
+
+/* --- Clase Hidden --- */
+.hidden {
+    display: none !important;
+}

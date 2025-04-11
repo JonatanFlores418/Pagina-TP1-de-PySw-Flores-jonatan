@@ -1,0 +1,328 @@
+/* Blog Page Styles - Adaptado para Dark Mode y Mejoras Visuales */
+
+#blog {
+    padding: 2rem;
+    background-color: var(--color-fondo); /* Fondo general */
+    transition: background-color var(--transicion-rapida);
+}
+
+#blog h2 {
+    color: var(--color-titulos);
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: color var(--transicion-rapida);
+}
+
+.blog-container {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que el sidebar se ponga arriba en pantallas pequeñas */
+    gap: 2rem; /* Espacio entre sidebar y artículos */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    flex: 1 1 250px; /* Flex-grow, flex-shrink, flex-basis (ancho mínimo) */
+    background-color: var(--color-card-fondo);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--sombra-suave);
+    border: 1px solid var(--color-borde-suave);
+    align-self: flex-start; /* Alinear arriba */
+    position: sticky; /* Hacer que el sidebar se quede fijo al hacer scroll */
+    top: 80px; /* Ajustar según la altura de tu header sticky */
+    transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+}
+
+.filter-group {
+    margin-bottom: 1.5rem; /* Espacio entre grupos de filtros */
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--color-titulos);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--color-primario); /* Línea debajo del título */
+    padding-bottom: 0.5rem;
+    transition: color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-list li {
+    margin-bottom: 0.6rem; /* Espacio entre items de filtro */
+}
+
+/* Estilo personalizado para radio y checkbox */
+.filter-list input[type="radio"],
+.filter-list input[type="checkbox"] {
+    opacity: 0; /* Ocultar input original */
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.filter-list label {
+    display: inline-block; /* Para que el padding funcione bien */
+    position: relative;
+    padding-left: 28px; /* Espacio para el control personalizado */
+    cursor: pointer;
+    color: var(--color-texto);
+    transition: color var(--transicion-rapida);
+    line-height: 20px; /* Alinear texto verticalmente */
+    user-select: none; /* Evitar selección de texto */
+}
+
+/* Estilo base del control personalizado (círculo/cuadrado) */
+.filter-list label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-borde-suave);
+    background-color: var(--color-fondo);
+    transition: border-color var(--transicion-rapida), background-color var(--transicion-rapida);
+}
+
+/* Estilo específico para radio (círculo) */
+.filter-list input[type="radio"] + label::before {
+    border-radius: 50%;
+}
+
+/* Estilo específico para checkbox (cuadrado) */
+.filter-list input[type="checkbox"] + label::before {
+    border-radius: 3px;
+}
+
+/* Estilo del indicador interior (cuando está seleccionado) */
+.filter-list label::after {
+    content: '';
+    position: absolute;
+    left: 5px; /* Ajustar posición del indicador */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primario);
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.2s ease;
+}
+.filter-list input[type="radio"] + label::after {
+    border-radius: 50%;
+}
+.filter-list input[type="checkbox"] + label::after {
+    border-radius: 2px;
+    /* Opcional: forma de checkmark con bordes */
+    /* left: 6px; top: 2px; width: 5px; height: 10px;
+    border: solid var(--color-boton-texto);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    background-color: transparent; */
+}
+
+
+/* Mostrar indicador cuando está seleccionado */
+.filter-list input[type="radio"]:checked + label::after,
+.filter-list input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+/* Cambiar borde del control cuando está seleccionado */
+.filter-list input[type="radio"]:checked + label::before,
+.filter-list input[type="checkbox"]:checked + label::before {
+    border-color: var(--color-primario);
+}
+
+/* Efecto hover en la etiqueta */
+.filter-list label:hover {
+    color: var(--color-primario);
+}
+.filter-list label:hover::before {
+    border-color: var(--color-primario-hover);
+}
+
+
+/* Estilo de Tags como botones */
+.tags label {
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde-suave);
+    padding: 5px 12px;
+    border-radius: 15px; /* Más redondeado */
+    font-size: 0.85rem;
+    transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+    padding-left: 12px; /* Resetear padding para tags */
+}
+.tags label::before, .tags label::after {
+    display: none; /* Ocultar controles personalizados para tags */
+}
+
+.tags input[type="checkbox"]:checked + label {
+    background-color: var(--color-primario);
+    color: var(--color-boton-texto);
+    border-color: var(--color-primario);
+}
+.tags label:hover {
+    background-color: var(--color-borde-suave);
+    color: var(--color-texto);
+    border-color: var(--color-borde-suave);
+}
+.tags input[type="checkbox"]:checked + label:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+    color: var(--color-boton-texto);
+}
+
+
+/* --- Artículos --- */
+.articles {
+    flex: 3 1 800px; /* Ocupar más espacio, ancho base 600px */
+    display: grid;
+    /* Usar auto-fill para llenar el espacio, min 300px por artículo */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 250px; /* Espacio entre artículos */
+}
+
+.blog-article {
+    background-color: var(--color-card-fondo);
+    width: 500px;
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid var(--color-borde-suave);
+    box-shadow: var(--sombra-suave);
+    padding: 100; /* Quitar padding general, se aplica a secciones internas */
+    overflow: hidden; /* Asegurar que la imagen no se salga */
+    display: flex; /* Usar flex para mejor control interno */
+    flex-direction: column;
+    transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida),
+                background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.blog-article:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+.blog-article img {
+    width: 100%;
+    height: 225px;
+    object-fit: cover;
+    /* Quitar margen y borde redondeado de aquí, se maneja en el contenedor */
+    display: block; /* Evitar espacio extra debajo */
+    transition: transform var(--transicion-rapida), filter 0.3s ease;
+}
+
+.blog-article:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1); /* Aclarar un poco al hacer hover */
+}
+
+.article-content { /* Contenedor para texto y botón */
+    padding: 100px;
+    flex-grow: 1; /* Ocupar espacio restante */
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-article h3 {
+    color: var(--color-titulos);
+    margin: 0 0 0.8rem 0; /* Ajustar márgenes */
+    font-size: 1.3rem;
+    transition: color var(--transicion-rapida);
+}
+
+.blog-article p {
+    color: var(--color-texto);
+    margin: 0 0 1rem 0; /* Margen inferior */
+    align-content: center;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1; /* Empujar botón hacia abajo si hay poco texto */
+    transition: color var(--transicion-rapida);
+}
+
+.blog-article .btn {
+    margin-left: 200px;
+    margin-top: 2px;
+    align-self: flex-start; /* Alinear a la izquierda */
+    /* Hereda estilos de .btn */
+}
+
+/* --- Sección de Comentarios --- */
+.comments {
+    background-color: var(--color-fondo); /* Fondo ligeramente diferente */
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--color-borde-suave);
+    transition: background-color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+.comments h4 {
+    color: var(--color-texto);
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: color var(--transicion-rapida);
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start; /* Alinear avatar arriba */
+    gap: 0.8rem; /* Espacio entre avatar y texto */
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed var(--color-borde-suave); /* Separador sutil */
+    transition: border-color var(--transicion-rapida);
+}
+.comment:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-borde-suave); /* Color placeholder */
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0; /* Evitar que el avatar se encoja */
+    transition: background-color var(--transicion-rapida);
+}
+
+.comment p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-texto);
+    transition: color var(--transicion-rapida);
+}
+.comment p strong {
+    color: var(--color-primario); /* Resaltar nombre */
+    display: block; /* Nombre en línea separada */
+    margin-bottom: 0.2rem;
+    transition: color var(--transicion-rapida);
+}
+
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .blog-container {
+        flex-direction: column; /* Sidebar arriba */
+    }
+    .sidebar {
+        width: 100%; /* Ocupar todo el ancho */
+        position: static; /* Quitar sticky en móvil */
+        margin-bottom: 2rem;
+    }
+    .articles {
+        width: 100%;
+    }
+}

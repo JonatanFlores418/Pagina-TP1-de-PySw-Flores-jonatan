@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gimnasio - Entrenadores</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/entrenadores.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clases.html">Clases</a>
+                    <ul>
+                        <li><a href="#">Musculación</a></li>
+                        <li><a href="#">CrossFit</a></li>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="entrenadores.html">Entrenadores</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li>
+                    <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                        <span class="icon">🌙</span>
+                        <span class="text hidden-mobile">Modo Oscuro</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="entrenadores">
+            <h2>Nuestros Entrenadores</h2>
+            <!-- Párrafo introductorio sin <br> ni type=center -->
+            <p class="intro-text">
+                En nuestro gimnasio, contamos con un equipo de entrenadores altamente calificados y apasionados por el fitness.
+                Cada uno de ellos posee una amplia experiencia y conocimientos en diversas disciplinas, garantizando un entrenamiento
+                personalizado y efectivo para ayudarte a alcanzar tus objetivos. Conoce a nuestro equipo y descubre cómo pueden
+                guiarte en tu camino hacia una vida más saludable.
+            </p>
+
+            <div class="cards-container">
+                <!-- Tarjeta 1: Axel Sonso -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="img/entrenador1.jpg" alt="Foto de Axel Sonso">
+                            <h3>Entrenador de Musculación</h3>
+                            <p>Axel Sonso</p> <!-- Etiqueta corregida -->
+                        </div>
+                        <div class="card-back">
+                            <h3>Axel Sonso</h3>
+                            <p>Con más de ocho años de experiencia en el mundo del fitness, Axel se especializa en entrenamiento de fuerza e hipertrofia, ayudando a sus alumnos a lograr resultados reales con rutinas personalizadas y una técnica impecable.</p>
+                            <div class="habilidad">
+                                <p>Fuerza</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 90%;">90%</div>
+                                </div>
+                            </div>
+                            <div class="habilidad">
+                                <p>Flexibilidad</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 80%;">80%</div>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <!-- Para estrellas dinámicas, necesitarías JS para añadir/quitar 'active' -->
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star"></span> <!-- Ejemplo 4 estrellas -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Malena Bulos -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="img/entrenador2.jpg" alt="Foto de Malena Bulos">
+                            <h3>Entrenadora de CrossFit</h3>
+                            <p>Malena Bulos</p>
+                        </div>
+                        <div class="card-back">
+                            <h3>Malena Bulos</h3>
+                            <p>Malena es instructora certificada en CrossFit y apasionada por el entrenamiento funcional. Su enfoque está en la constancia y la superación personal, adaptando cada clase a distintos niveles y motivando siempre con buena energía.</p>
+                            <div class="habilidad">
+                                <p>Resistencia</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 85%;">85%</div>
+                                </div>
+                            </div>
+                            <div class="habilidad">
+                                <p>Agilidad</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 75%;">75%</div>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span> <!-- Ejemplo 5 estrellas -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Agustina Subiabre -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="img/entrenador4jpg.jpeg" alt="Foto de Agustina Subiabre">
+                            <h3>Entrenadora de Yoga</h3>
+                            <p>Agustina Subiabre</p> <!-- Etiqueta corregida -->
+                        </div>
+                        <div class="card-back">
+                            <h3>Agustina Subiabre</h3>
+                            <p>Agustina cuenta con una sólida trayectoria en yoga, combinando técnicas de Hatha y Vinyasa. En sus clases busca generar un espacio de bienestar, equilibrio y conexión interior, tanto física como mental.</p>
+                            <div class="habilidad">
+                                <p>Flexibilidad</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 95%;">95%</div>
+                                </div>
+                            </div>
+                            <div class="habilidad">
+                                <p>Equilibrio</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 90%;">90%</div>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span> <!-- Ejemplo 5 estrellas -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Tomas Mazza -->
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="img/entrenador3.jpg" alt="Foto de Tomas Mazza">
+                            <h3>Entrenador de Spinning</h3>
+                            <p>Tomas Mazza</p> <!-- Etiqueta corregida -->
+                        </div>
+                        <div class="card-back">
+                            <h3>Tomas Mazza</h3>
+                            <p>Tomas es un entrenador dinámico con formación en Spinning y entrenamiento cardiovascular. Sus clases combinan ritmo, intensidad y motivación, ofreciendo una experiencia completa para todos los niveles.</p>
+                            <div class="habilidad">
+                                <p>Cardio</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 90%;">90%</div>
+                                </div>
+                            </div>
+                            <div class="habilidad">
+                                <p>Resistencia</p>
+                                <div class="barra-habilidad">
+                                    <div class="barra-progreso" style="width: 88%;">88%</div>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star active"></span>
+                                <span class="star"></span> <!-- Ejemplo 4 estrellas -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Puedes añadir más tarjetas aquí -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+    <!-- Script para cargar Nav y Footer -->
+    <script>
+        // Función para cargar contenido HTML (reutilizable)
+        function loadHTML(url, placeholderId) {
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) placeholder.innerHTML = data;
+                    else console.error(`Placeholder with ID "${placeholderId}" not found.`);
+                })
+                .catch(error => console.error(`Could not load ${url}:`, error));
+        }
+
+        // Cargar Nav y Footer cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            // El script de Dark Mode se cargará y ejecutará desde nav.html
+            loadHTML('nav.html', 'nav-placeholder');
+            loadHTML('footer.html', 'footer-placeholder');
+            // Inicializar estrellas después de un pequeño retraso para asegurar que el CSS se aplique
+            setTimeout(initializeStarRatings, 100);
+        });
+
+        // Función para inicializar las estrellas (opcional, si quieres que se basen en un número)
+        function initializeStarRatings() {
+            const ratings = document.querySelectorAll('.rating');
+            ratings.forEach(rating => {
+                const stars = rating.querySelectorAll('.star');
+                // Aquí podrías leer un data-attribute o similar para saber cuántas estrellas activar
+                // Ejemplo: activar 4 estrellas
+                const activeStars = 4; // Cambia esto o hazlo dinámico
+                stars.forEach((star, index) => {
+                    if (index < activeStars) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+            });
+        }
+    </script>
+    <!-- Enlace a tu script general si tienes más lógica común -->
+    <!-- <script src="js/scripts.js"></script> -->
+</body>
+</html>

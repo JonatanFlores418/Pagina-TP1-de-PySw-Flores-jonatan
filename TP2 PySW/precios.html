@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre nuestros planes de gimnasio con precios accesibles y beneficios exclusivos.">
+    <title>Gimnasio - Precios</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/precios.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="clases.html">Clases</a>
+                    <ul>
+                        <li><a href="#">Musculación</a></li>
+                        <li><a href="#">CrossFit</a></li>
+                        <li><a href="#">Yoga</a></li>
+                        <li><a href="#">Spinning</a></li>
+                    </ul>
+                </li>
+                <li><a href="entrenadores.html">Entrenadores</a></li>
+                <li><a href="precios.html">Precios</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li>
+                    <button id="darkModeToggle" aria-label="Cambiar modo claro/oscuro">
+                        <span class="icon">🌙</span>
+                        <span class="text hidden-mobile">Modo Oscuro</span> 
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section id="precios">
+            <h2>Nuestros Planes</h2>
+            <div class="toggle-container">
+                <span class="toggle-text">Mensual</span>
+                <input type="checkbox" id="toggle-plan" class="toggle">
+                <label for="toggle-plan" class="toggle-label">
+                    <span class="toggle-inner"></span>
+                    <span class="toggle-switch"></span>
+                </label>
+                <span class="toggle-text">Anual (¡Ahorra!)</span>
+            </div>
+
+            <!-- Contenedores para las tarjetas generadas por JS -->
+            <div id="monthly-plans" class="card-container">
+                <!-- Tarjetas Mensuales se insertarán aquí -->
+            </div>
+            <div id="annual-plans" class="card-container hidden">
+                <!-- Tarjetas Anuales se insertarán aquí -->
+            </div>
+
+            <!-- Tabla Comparativa (Opcional, pero la actualizamos) -->
+            <h2 class="table-title">Tabla Comparativa Rápida</h2>
+            <div class="table-wrapper">
+                <table id="tabla-precios">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th class="price-col">Precio <span class="monthly-label">(Mensual)</span><span class="annual-label hidden">(Anual)</span></th>
+                            <th>Acceso Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Plan Básico -->
+                        <tr class="plan">
+                            <td>Básico</td>
+                            <td class="price-col">
+                                <span class="precio-mensual">$50</span>
+                                <span class="precio-anual hidden">$500</span>
+                            </td>
+                            <td class="tooltip">Acceso a sala de musculación
+                                <span class="tooltiptext">Acceso completo a todas las máquinas de musculación durante el horario de apertura.</span>
+                            </td>
+                        </tr>
+                        <!-- Plan Intermedio (NUEVO) -->
+                        <tr class="plan">
+                            <td>Intermedio</td>
+                            <td class="price-col">
+                                <span class="precio-mensual">$85</span>
+                                <span class="precio-anual hidden">$850</span>
+                            </td>
+                            <td class="tooltip">Musculación + 2 Clases Grupales/semana
+                                <span class="tooltiptext">Acceso a sala de musculación y elección de 2 clases grupales (Yoga, Spinning, etc.) por semana.</span>
+                            </td>
+                        </tr>
+                        <!-- Plan Premium -->
+                        <tr class="plan">
+                            <td>Premium</td>
+                            <td class="price-col">
+                                <span class="precio-mensual">$120</span>
+                                <span class="precio-anual hidden">$1200</span>
+                            </td>
+                            <td class="tooltip">Acceso Ilimitado Total
+                                <span class="tooltiptext">Acceso ilimitado a todas las instalaciones (musculación, piscina, sauna) y todas las clases grupales.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="contacto.html" class="btn-empezar">¡Empieza Hoy Mismo!</a>
+        </section>
+    </main>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script>
+        // --- Lógica Dark Mode ---
+        // Es importante que este script se ejecute DESPUÉS de que el botón exista.
+        // Al estar dentro de nav.html (si se carga con fetch), esto se cumple.
+    
+        const toggleButton = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const buttonIcon = toggleButton.querySelector('.icon');
+        const buttonText = toggleButton.querySelector('.text'); // Opcional
+    
+        if (!toggleButton) {
+            console.error("Botón Dark Mode no encontrado.");
+        } else {
+            // Función para aplicar tema y actualizar botón/storage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '☀️';
+                    if (buttonText) buttonText.textContent = 'Modo Claro'; // Opcional
+                    localStorage.setItem('theme', 'dark');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo claro');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (buttonIcon) buttonIcon.textContent = '🌙';
+                    if (buttonText) buttonText.textContent = 'Modo Oscuro'; // Opcional
+                    localStorage.setItem('theme', 'light');
+                    toggleButton.setAttribute('aria-label', 'Cambiar a modo oscuro');
+                }
+            };
+    
+            // Comprobar preferencia guardada o del sistema al cargar
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+            // Aplicar tema inicial
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light'); // Default light
+            }
+    
+            // Event listener para el clic
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+    
+             // (Opcional) Escuchar cambios en la preferencia del sistema
+             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // Solo cambia si el usuario no ha elegido explícitamente un tema
+                if (!localStorage.getItem('theme')) {
+                    applyTheme(event.matches ? 'dark' : 'light');
+                }
+            });
+        }
+    </script>
+    
+    <!-- Script para cargar Nav/Footer y lógica de precios -->
+    <script>
+        // Función para cargar contenido HTML (reutilizable)
+        function loadHTML(url, placeholderId) {
+            return fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return response.text();
+                })
+                .then(data => {
+                    const placeholder = document.getElementById(placeholderId);
+                    if (placeholder) placeholder.innerHTML = data;
+                    else console.error(`Placeholder with ID "${placeholderId}" not found.`);
+                })
+                .catch(error => console.error(`Could not load ${url}:`, error));
+        }
+
+        // Ejecutar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar Nav y Footer en paralelo
+            Promise.all([
+                loadHTML('nav.html', 'nav-placeholder'),
+                loadHTML('footer.html', 'footer-placeholder')
+            ]).then(() => {
+                // Una vez cargados, inicializar la lógica específica de esta página
+                initializePricingLogic();
+                // El script de Dark Mode ya se ejecutó al cargar nav.html
+            });
+        });
+
+        // Lógica específica de la página de precios
+        function initializePricingLogic() {
+            const togglePlan = document.getElementById('toggle-plan');
+            const monthlyPlansContainer = document.getElementById('monthly-plans');
+            const annualPlansContainer = document.getElementById('annual-plans');
+            const priceTable = document.getElementById('tabla-precios');
+            const monthlyTableLabels = priceTable.querySelectorAll('.precio-mensual, .monthly-label');
+            const annualTableLabels = priceTable.querySelectorAll('.precio-anual, .annual-label');
+
+            // --- Datos de los Planes ---
+            const plans = [
+                {
+                    name: 'Básico',
+                    monthlyPrice: '$50',
+                    annualPrice: '$500',
+                    monthlyBenefits: ['Acceso a sala de musculación', 'Vestuarios y duchas'],
+                    annualBenefits: ['Acceso a sala de musculación', 'Vestuarios y duchas', '10% dto. en tienda', '1 sesión con entrenador'],
+                    highlight: false // No destacar
+                },
+                { // --- NUEVO PLAN INTERMEDIO ---
+                    name: 'Intermedio',
+                    monthlyPrice: '$85',
+                    annualPrice: '$850',
+                    monthlyBenefits: ['Acceso a sala de musculación', '2 Clases Grupales por semana', 'Vestuarios y duchas'],
+                    annualBenefits: ['Acceso a sala de musculación', '2 Clases Grupales por semana', 'Vestuarios y duchas', '15% dto. en tienda', '2 sesiones con entrenador'],
+                    highlight: true // Destacar este plan
+                },
+                {
+                    name: 'Premium',
+                    monthlyPrice: '$120',
+                    annualPrice: '$1200',
+                    monthlyBenefits: ['Acceso ilimitado a instalaciones', 'Clases grupales ilimitadas', 'Acceso a piscina', 'Vestuarios y duchas'],
+                    annualBenefits: ['Acceso ilimitado a instalaciones', 'Clases grupales ilimitadas', 'Acceso a piscina y sauna', '30% dto. en tienda', '4 sesiones con entrenador', 'Toalla incluida'],
+                    highlight: false // No destacar
+                }
+            ];
+
+            // --- Función para Crear Tarjetas ---
+            function createPlanCard(plan, isAnnual) {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                if (plan.highlight) {
+                    card.classList.add('highlighted'); // Añadir clase para destacar
+                }
+
+                const title = document.createElement('h3');
+                title.textContent = plan.name;
+                card.appendChild(title);
+
+                const price = document.createElement('p');
+                price.classList.add('price'); // Clase para estilizar el precio
+                if (isAnnual) {
+                    price.innerHTML = `${plan.annualPrice} <span class="period">/ año</span> <span class="discount">(Equivale a ${Math.round(parseInt(plan.annualPrice.substring(1))/12)}$/mes)</span>`;
+                } else {
+                    price.innerHTML = `${plan.monthlyPrice} <span class="period">/ mes</span>`;
+                }
+                card.appendChild(price);
+
+                const benefitsList = document.createElement('ul');
+                const benefits = isAnnual ? plan.annualBenefits : plan.monthlyBenefits;
+                benefits.forEach(benefit => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = benefit;
+                    benefitsList.appendChild(listItem);
+                });
+                card.appendChild(benefitsList);
+
+                // Botón dentro de la tarjeta
+                const btn = document.createElement('a');
+                btn.href = 'contacto.html'; // Enlace a contacto
+                btn.classList.add('btn', 'btn-card'); // Usar clase .btn general y una específica
+                btn.textContent = 'Elegir Plan';
+                card.appendChild(btn);
+
+
+                return card;
+            }
+
+            // --- Generar Tarjetas ---
+            plans.forEach(plan => {
+                monthlyPlansContainer.appendChild(createPlanCard(plan, false));
+                annualPlansContainer.appendChild(createPlanCard(plan, true));
+            });
+
+            // --- Lógica del Toggle ---
+            if (togglePlan) {
+                togglePlan.addEventListener('change', function() {
+                    const isAnnual = this.checked;
+
+                    // Alternar visibilidad de contenedores de tarjetas
+                    monthlyPlansContainer.classList.toggle('hidden', isAnnual);
+                    annualPlansContainer.classList.toggle('hidden', !isAnnual);
+
+                    // Alternar visibilidad en la tabla
+                    monthlyTableLabels.forEach(el => el.classList.toggle('hidden', isAnnual));
+                    annualTableLabels.forEach(el => el.classList.toggle('hidden', !isAnnual));
+                });
+
+                // Disparar el evento change inicialmente si el toggle está marcado (por si acaso)
+                if (togglePlan.checked) {
+                    togglePlan.dispatchEvent(new Event('change'));
+                }
+            } else {
+                console.error("Toggle button not found");
+            }
+        } // Fin de initializePricingLogic
+
+    </script>
+    <!-- <script src="js/scripts.js"></script> --> <!-- Si tienes lógica común adicional -->
+</body>
+</html>
